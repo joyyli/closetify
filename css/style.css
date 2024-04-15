@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(209, 241, 239, 1) 0%, rgba(173, 175, 199, 1) 100%);
+}
+
+.menu-bar {
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.icon-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+}
+
+
+.icon-svg {
+    width: 2rem;
+    color: #262626;
+}
+
+.icon-menu {
+    margin-left: 1rem;
+}
+
+.icon-feed {
+    margin-right: 0.4rem;
+}
+
+.menu-list-desktop {
+    display: none;
+    padding: 0.3rem;
+    height: 3rem;
+}
+
+.menu-list-desktop a {
+    color: var(--text-text-primary, #262626);
+
+    font-family: Inter;
+    font-size: 1.25rem;
+    text-decoration-line: none;
+}
+
+
+.outfit-list {
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+
+/* Card element is fixed size, 
+when the screen size changed, then just aligning direction change
+from col to row */
+
+.card {
+    max-width: 324px;
+    width: 100%;
+    font-family: Inter;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.card-header {
+    color: #262626;
+    font-size: 1.125rem;
+    margin-bottom: 12px;
+}
+
+.card-content {
+    padding: 16px 24px 24px 24px;
+    font-size: 1rem;
+
+    border-radius: 12px;
+    border: 1px var(--gradient-glass-stroke, rgba(255, 255, 255, 0.50));
+    background: var(--gradient-glass, linear-gradient(140deg, rgba(255, 255, 255, 0.50) -3.66%, rgba(255, 255, 255, 0.10) 108.42%));
+
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(10px);
+}
+
+.card-img {
+    width: 256px;
+    height: 256px;
+    border-radius: 8px;
+    background: #FFF;
+    margin: auto;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-img img {
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.layer-icon {
+    position: fixed;
+    bottom: 1.7rem;
+    right: 1rem;
+    z-index: 1000;
+
+}
+
+@media (min-width: 598px) {
+    .outfit-list {
+        flex-direction: row;
+    }
+
+    .icon-group {
+        display: none;
+    }
+
+    .menu-list-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+}
