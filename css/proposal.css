@@ -1,0 +1,68 @@
+/* at least 2 rules that change at least 3 different properties
+and add some spacing around content? */
+* {
+    box-sizing: border-box;
+}
+
+header {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+    background: #f3f3f7;;
+}
+
+main {
+    width: 70%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+p, li, .card-text, .card-title {
+    font-family: Lato, sans-serif;
+    color:#003157;
+}
+
+h1, h2, h3 {
+    font-family: Garamond, 'Times New Roman', Times, serif;
+    color: #bc3737;
+}
+
+.card-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 24px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    height: auto;
+    position: relative;
+    background: #E3E3F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5%;
+}
+
+.card > * {
+    padding: 8px;
+}
+
+.card h3 {
+    margin: 0;
+}
+
+.card:hover, .card:focus {
+    background: white;
+}
