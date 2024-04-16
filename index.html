@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="Group6">
-    <meta name="description" content="description of your page">
+    <meta name="author" content="INFO 340 Group 6: June Mi Hong, Ella Kim, Joy Li">
+    <meta name="description" content="Closetify is is a web app that aims to help users better utilize their wardrobe and have an easier time when picking out their daily outfits.">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap" rel="stylesheet">
 
-    <title>CLOSETIFY</title>
+    <title>Closetify</title>
 </head>
 
 <body>
-    <header>
+    <header role="banner">
         <div class="menu-bar">
             <div class="logo">
                 <a href="index.html"><img src="icon/logo 2.svg" alt="closetify" /></a>
@@ -33,8 +33,8 @@
                         </svg>
                     </a>
                 </div>
-                <div class="icon-calendar">
-                    <a href="calender.html">
+                <nav class="icon-calendar" role="navigation">
+                    <a href="calendar.html">
                         <svg class="icon-svg" width="24" height="28" viewBox="0 0 24 28" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="icon / calendar">
@@ -51,59 +51,71 @@
                             </g>
                         </svg>
                     </a>
-                </div>
-                <div class="icon-menu">
+                </nav>
+                <nav class="icon-menu" role="navigation">
                     <svg class="icon-svg" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
                     </svg>
-                </div>
+                </nav>
             </div>
-            <div class="menu-list-desktop">
-                <div>
-                    <img src="icon/pin.svg" alt="pin" />
+            <nav class="menu-list-desktop" role="navigation">
+                <div class="nav-item nav-current">
+                    <img src="icon/pin.svg" alt="pin">
                     <a href="index.html">Home</a>
                 </div>
-                <a href="mycloest.html">My Closet</a>
-                <a href="anlaytics.html">Anlaytics</a>
-                <a href="profile.html">Profile</a>
-            </div>
+                <div class="nav-item">
+                    <a href="mycloset.html">My Closet</a>
+                </div>
+                <div class="nav-item">
+                    <!-- add conditional for "register/login" link -->
+                    <a href="profile.html">Profile</a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <div class="outfit-list">
+    <main role="main">
+        <section class="outfit-list">
             <div class="card">
-                <div class="card-header">Sunday, April 14</div>
-                <div class="card-content">
-                    Outfit name
+                <div class="card-header">
+                    <h1>Sunday, April 14</h1>
+                </div>
+                <div class="card-content glass">
+                    <p>Outfit name</p>
                     <div class="card-img"> <img src="img/7d1e28105415001b6aaab7645dfa67ac.jpg" alt="test" />
                     </div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">Sunday, April 14</div>
-                <div class="card-content">
-                    Outfit name
+                <div class="card-header">
+                    <h1>Sunday, April 14</h1>
+                </div>
+                <div class="card-content  glass">
+                    <p>Outfit name</p>
                     <div class="card-img"> <img src="img/bc9bad3ed5a4c7222ae84a8294815f5a.jpg" alt="test" />
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">Sunday, April 14</div>
-                <div class="card-content">
-                    Outfit name
+                <div class="card-header">
+                    <h1>Sunday, April 14</h1>
+                </div>
+                <div class="card-content glass">
+                    <p>Outfit name</p>
                     <div class="card-img"> <img src="img/5398cde0292f3bde92c83d182da9766f.jpg" alt="test" />
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header">Sunday, April 14</div>
-                <div class="card-content">
-                    Outfit name
+                <div class="card-header">
+                    <h1>Sunday, April 14</h1>
+                </div>
+                <div class="card-content glass">
+                    <p>Outfit name</p>
                     <div class="card-img"> <img src="img/eb2a27115c028c5f79b9e820e12c01ce.jpg" alt="test" />
                     </div>
                 </div>
@@ -112,11 +124,13 @@
                 <a href="styleoutfit.html"><img src="icon/Property 1=add outfit.svg" alt="Add outfit icon" /></a>
 
             </div>
-        </div>
-
+        </section>
     </main>
-    <footer>
-        &copy;
+
+    <footer role="contentinfo">
+        <p>
+            &copy 2024 Closetify; All rights reserved.
+        </p>
     </footer>
 
 </body>
