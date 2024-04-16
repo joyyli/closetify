@@ -4,6 +4,15 @@
 
 body {
     background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(209, 241, 239, 1) 0%, rgba(173, 175, 199, 1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 .menu-bar {
