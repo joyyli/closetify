@@ -26,16 +26,6 @@ p {
     color: var(--primary);
 }
 
-/* container style */
-
-.glass {
-    border: 1px var(--gradient-glass-stroke, rgba(255, 255, 255, 0.50));
-    background: var(--gradient-glass, linear-gradient(140deg, rgba(255, 255, 255, 0.50) -3.66%, rgba(255, 255, 255, 0.10) 108.42%));
-
-    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.10);
-    backdrop-filter: blur(10px);
-}
-
 /* body background */
 
 body {
@@ -56,6 +46,24 @@ footer p {
     color: var(--secondary);
     font-style: italic;
 }
+
+
+/* DO NOT CHANGE UP HERE */
+/* CORE STYLEINGS */
+/* CAN EFFECT OTHER PAGES */
+
+
+/* container style */
+
+.glass {
+    border: 1px var(--gradient-glass-stroke, rgba(255, 255, 255, 0.50));
+    background: var(--gradient-glass, linear-gradient(140deg, rgba(255, 255, 255, 0.50) -3.66%, rgba(255, 255, 255, 0.10) 108.42%));
+
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(10px);
+}
+
+
 
 /* header - nav bar */
 
@@ -126,6 +134,7 @@ footer p {
 .dropdown-content {
     display: none;
 }
+
 
 /* Only using ID for presenting the hamburger feature */
 #mobileNavDropdown:target {
@@ -225,8 +234,7 @@ footer p {
     align-items: baseline;
 }
 
-.MonthLeft,
-.MonthRight {
+.calender-month-arrow {
     width: 2rem;
     height: 2rem;
     display: flex;
@@ -296,6 +304,7 @@ footer p {
         max-height: 600px;
     }
 
+    /* Only using ID for presenting the hamburger feature */
     #mobileNavDropdown:target {
         display: none;
     }
