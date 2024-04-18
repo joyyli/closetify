@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="INFO 340 Group 6: June Mi Hong, Ella Kim, Joy Li">
-    <meta name="description" content="Closetify is is a web app that aims to help users better utilize their wardrobe and have an easier time when picking out their daily outfits.">
+    <meta name="description"
+        content="Closetify is is a web app that aims to help users better utilize their wardrobe and have an easier time when picking out their daily outfits.">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,7 +22,7 @@
                 <a href="index.html"><img src="icon/logo 2.svg" alt="closetify" /></a>
             </div>
             <div class="icon-group">
-                <div class="icon-feed">
+                <nav class="icon-feed">
                     <a href="index.html">
                         <svg class="icon-svg" width="20" height="24" viewBox="0 0 20 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +33,7 @@
                             </g>
                         </svg>
                     </a>
-                </div>
+                </nav>
                 <nav class="icon-calendar" role="navigation">
                     <a href="calendar.html">
                         <svg class="icon-svg" width="24" height="28" viewBox="0 0 24 28" fill="none"
@@ -53,11 +54,13 @@
                     </a>
                 </nav>
                 <nav class="icon-menu" role="navigation">
-                    <svg class="icon-svg" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                    </svg>
+                    <a href="#mobileNavDropdown">
+                        <svg class="icon-svg" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                        </svg>
+                    </a>
                 </nav>
             </div>
             <nav class="menu-list-desktop" role="navigation">
@@ -69,11 +72,38 @@
                     <a href="mycloset.html">My Closet</a>
                 </div>
                 <div class="nav-item">
-                    <!-- add conditional for "register/login" link -->
                     <a href="profile.html">Profile</a>
                 </div>
             </nav>
         </div>
+        <div id="mobileNavDropdown" class="dropdown-content">
+            <div class="menu-list-mobile">
+                <div class="menu-list-mobile-pin">
+                    <img src="icon/pin.svg" alt="pin">
+                </div>
+                <a href="index.html">
+                    <h1>Home</h1>
+                </a>
+            </div>
+            <div class="menu-list-mobile">
+                <div class="menu-list-mobile-pin">
+                </div>
+                <a href="mycloset.html">
+                    <h1>My Closet</h1>
+                </a>
+
+            </div>
+
+            <div class="menu-list-mobile">
+                <div class="menu-list-mobile-pin">
+                </div>
+                <a href="profile.html">
+                    <h1>Profile</h1>
+                </a>
+
+            </div>
+        </div>
+
     </header>
 
     <main role="main">

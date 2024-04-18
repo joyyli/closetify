@@ -98,7 +98,8 @@ footer p {
     padding: 2rem;
 }
 
-.menu-list-desktop a {
+.menu-list-desktop a,
+.menu-list-mobile a {
     color: var(--secondary);
     font-family: Inter;
     font-size: 1.25rem;
@@ -108,6 +109,29 @@ footer p {
 .menu-list-desktop .nav-current a {
     color: var(--primary);
 }
+
+.menu-list-mobile {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-list-mobile-pin {
+    width: 2rem;
+}
+
+.dropdown-content {
+    display: none;
+}
+
+/* Only using ID for presenting the hamburger feature */
+#mobileNavDropdown:target {
+    display: block;
+}
+
 
 /* home feed */
 
@@ -121,23 +145,18 @@ footer p {
     gap: 0.7rem;
 }
 
-
-/* Card element is fixed size, 
-when the screen size changed, then just aligning direction change
-from col to row */
+/* Card components */
 
 .card {
-    max-width: 324px;
-    width: 100%;
-    font-family: Inter;
+    max-width: 80%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 1rem auto;
 }
 
 .card-header {
-    margin-bottom: 12px;
+    margin-bottom: 0.5rem;
 }
 
 .card-header h1 {
@@ -145,28 +164,33 @@ from col to row */
 }
 
 .card-content {
-    padding: 16px 24px 24px 24px;
+    padding: 1rem;
     border-radius: 12px;
+    width: 80vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-img {
-    width: 256px;
-    height: 256px;
-    border-radius: 8px;
+    width: 100%;
     background: #FFF;
-    margin: auto;
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 8px;
     overflow: hidden;
 }
 
 .card-img img {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
 }
+
+/* Icon styling */
 
 .layer-icon {
     position: fixed;
@@ -176,10 +200,82 @@ from col to row */
 
 }
 
+/* Calender compoments */
+
+.calendar-container {
+    display: grid;
+    place-items: center;
+    height: 80vh;
+    width: auto;
+
+}
+
+.calendar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.calender-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.MonthLeft,
+.MonthRight {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.stamp-box {
+    height: 1.5rem;
+}
+
+.calendar-day {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    display: inline-flex;
+
+}
+
+.calendar-week,
+.calendar-dayofweek {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-week {
+    grid-auto-rows: 5rem;
+    text-align: right;
+}
+
+.calendar-dayofweek {
+    grid-auto-rows: 3rem;
+    color: var(--secondary);
+    align-items: center;
+    text-align: center;
+}
+
+.stamp-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+
 @media (min-width: 598px) {
-    .outfit-list {
-        flex-direction: row;
-    }
 
     .icon-group {
         display: none;
@@ -191,6 +287,17 @@ from col to row */
         align-items: center;
         gap: 2rem;
         padding: 1rem;
+    }
+
+    .calendar {
+        width: 70vw;
+        height: 80vh;
+        max-width: 800px;
+        max-height: 600px;
+    }
+
+    #mobileNavDropdown:target {
+        display: none;
     }
 
 }
