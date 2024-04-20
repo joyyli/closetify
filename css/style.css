@@ -10,19 +10,20 @@
 
     /* style variables */
     --bg-gradient: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(209, 241, 239, 1) 0%, rgba(173, 175, 199, 1) 100%);
+
+    /* default font */
+    font-family: Inter, Helvetica, sans-serif;
 }
 
 /* text styles */
 
 h1 {
-    font-family: Inter, Helvetica, sans-serif;
     font-size: 1.125rem;
     font-weight: normal;
     color: var(--primary);
 }
 
 p {
-    font-family: Inter, Helvetica, sans-serif;
     color: var(--primary);
 }
 
@@ -109,7 +110,6 @@ footer p {
 .menu-list-desktop a,
 .menu-list-mobile a {
     color: var(--secondary);
-    font-family: Inter;
     font-size: 1.25rem;
     text-decoration-line: none;
 }
@@ -346,6 +346,59 @@ footer p {
     background-color: #999;
 }
 
+/* Clothing item components */
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0px;
+}
+
+div.scrollmenu div {
+    display: inline-block;
+    padding: 0px 16px;
+}
+
+div.scrollmenu a {
+    text-decoration: none;
+    color: var(--secondary)
+}
+
+div.scrollmenu .selected-item a {
+    color: var(--primary)
+}
+
+div.scrollmenu .selected-item img {
+    width: 24px;
+}
+
+/* clothing items styling */
+.closet {
+    padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clothing-item {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.clothing-item img {
+    max-width: 130px;
+    max-height: 130px;
+    
+}
 
 @media (min-width: 598px) {
 
@@ -371,6 +424,21 @@ footer p {
     /* Only using ID for presenting the hamburger feature */
     #mobileNavDropdown:target {
         display: none;
+    }
+
+    /* clothing items */
+    .closet {
+        width: 60vw;
+    }
+
+    .clothing-item {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .clothing-item img {
+        max-width: 270px;
+        max-height: 270px;
     }
 
 }
