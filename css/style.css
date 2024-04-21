@@ -319,6 +319,53 @@ footer p {
     display: flex;
 }
 
+/* Profile */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.profile-photo {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-name {
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.profile-username {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-actions {
+    display: flex;
+}
+
+.edit-button,
+.logout-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #2F3F77;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover,
+.logout-button:hover {
+    background-color: #1e2d5b;
+}
+
 /*Add Item page*/
 .add-item-container {
     max-width: 800px;
