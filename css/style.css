@@ -144,6 +144,19 @@ footer p {
 
 /* home feed */
 
+.cta-button {
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    background: var(--periwinkle);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
 .buttons-desktop {
     display: none;
 }
@@ -286,6 +299,24 @@ footer p {
     align-items: center;
     justify-content: center;
 
+}
+
+/* Style outfit page */
+
+.style-content .card-header {
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.style-content .card {
+    max-width: 500px;
+    width: 80vw;
+}
+
+.style-content .cta-button {
+    display: flex;
 }
 
 /*Add Item page*/
