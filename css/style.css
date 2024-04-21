@@ -86,7 +86,7 @@ footer p {
 
 
 .icon-svg {
-    width: 2rem;
+    width: 1.5rem;
     color: #262626;
 }
 
@@ -328,8 +328,8 @@ footer p {
 }
 
 .profile-photo {
-    width: 150px; 
-    height: 150px; 
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin-bottom: 20px;
 }
@@ -483,7 +483,7 @@ div.scrollmenu .selected-item img {
 .clothing-item img {
     max-width: 130px;
     max-height: 130px;
-    
+
 }
 
 @media (min-width: 598px) {
@@ -568,7 +568,7 @@ div.scrollmenu .selected-item img {
         width: 300px;
         height: 300px;
     }
-    
+
     .clothing-item img {
         max-width: 270px;
         max-height: 270px;
