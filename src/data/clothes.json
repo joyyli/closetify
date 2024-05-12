@@ -1,0 +1,110 @@
+[
+    {
+        "id": "1",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Casual",
+        "Aesthetic": "Simple",
+        "img": "img/black t-shirt.png",
+        "alt": "black t shirt"
+    },
+    {
+        "id": "2",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Formal",
+        "Aesthetic": "Simple",
+        "img": "img/button-up.png",
+        "alt": "button-up"
+    },
+    {
+        "id": "3",
+        "category": "Tops",
+        "weather": "Cold",
+        "occasion": "Casual",
+        "Aesthetic": "y2k",
+        "img": "img/sweater.png",
+        "alt": "sweater"
+    },
+    {
+        "id": "4",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Casual",
+        "Aesthetic": "Simple",
+        "img": "img/tank top.png",
+        "alt": "pink tank top"
+    },
+    {
+        "id": "5",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Casual",
+        "Aesthetic": "Simple",
+        "img": "img/tank top2.png",
+        "alt": "black tank top"
+    },
+    {
+        "id": "6",
+        "category": "Tops",
+        "weather": "Cold",
+        "occasion": "Casual",
+        "Aesthetic": "Simple",
+        "img": "img/turtleneck.png",
+        "alt": "turtleneck"
+    },
+    {
+        "id": "7",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Formal",
+        "Aesthetic": "y2k",
+        "img": "img/blouse.png",
+        "alt": "taupe blouse"
+    },
+    {
+        "id": "8",
+        "category": "Tops",
+        "weather": "Sunny",
+        "occasion": "Work",
+        "Aesthetic": "Simple",
+        "img": "img/blouse2.png",
+        "alt": "white blouse"
+    },
+    {
+        "id": "9",
+        "category": "Bottoms",
+        "weather": "Sunny",
+        "occasion": "Casual",
+        "Aesthetic": "Simple",
+        "img": "img/jeans.jpeg",
+        "alt": "jeans"
+    },
+    {
+        "id": "10",
+        "category": "Bottoms",
+        "weather": "Sunny",
+        "occasion": "Formal",
+        "Aesthetic": "Simple",
+        "img": "img/trouser.jpeg",
+        "alt": "trouser"
+    },
+    {
+        "id": "11",
+        "category": "Dresses and Skirts",
+        "weather": "Sunny",
+        "occasion": "Formal",
+        "Aesthetic": "Simple",
+        "img": "img/simple dress.jpeg",
+        "alt": "simple dress"
+    },
+    {
+        "id": "12",
+        "category": "Accessories",
+        "weather": "Cold",
+        "occasion": "Casual",
+        "Aesthetic": "Balletcore",
+        "img": "img/Scarf.jpeg",
+        "alt": "Scarf"
+    }
+]

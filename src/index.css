@@ -1,0 +1,577 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    /* color variables */
+    --primary: #262626;
+    --secondary: #2F3F77;
+    --deactivated: #94A7CE;
+    --periwinkle: #3629C7;
+
+    /* style variables */
+    --bg-gradient: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(209, 241, 239, 1) 0%, rgba(173, 175, 199, 1) 100%);
+
+    /* default font */
+    font-family: Inter, Helvetica, sans-serif;
+}
+
+/* text styles */
+
+h1 {
+    font-size: 1.125rem;
+    font-weight: normal;
+    color: var(--primary);
+}
+
+p {
+    color: var(--primary);
+}
+
+/* body background */
+
+body {
+    background: var(--bg-gradient);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* footer */
+
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+footer p {
+    color: var(--secondary);
+    font-style: italic;
+}
+
+
+/* DO NOT CHANGE UP HERE */
+/* CORE STYLEINGS */
+/* CAN EFFECT OTHER PAGES */
+
+
+/* container style */
+
+.glass {
+    border: 1px var(--gradient-glass-stroke, rgba(255, 255, 255, 0.50));
+    background: var(--gradient-glass, linear-gradient(140deg, rgba(255, 255, 255, 0.50) -3.66%, rgba(255, 255, 255, 0.10) 108.42%));
+
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(10px);
+}
+
+
+
+/* header - nav bar */
+
+.menu-bar {
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.icon-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+}
+
+
+.icon-svg {
+    width: 1.5rem;
+    color: #262626;
+}
+
+.icon-menu {
+    margin-left: 1rem;
+}
+
+.icon-feed {
+    margin-right: 0.4rem;
+}
+
+.menu-list-desktop {
+    display: none;
+    padding: 0.3rem;
+    height: 3rem;
+}
+
+.menu-list-desktop .nav-item {
+    padding: 2rem;
+}
+
+.menu-list-desktop a,
+.menu-list-mobile a {
+    color: var(--secondary);
+    font-size: 1.25rem;
+    text-decoration-line: none;
+}
+
+.menu-list-desktop .nav-current a {
+    color: var(--primary);
+}
+
+.menu-list-mobile {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-list-mobile-pin {
+    width: 2rem;
+}
+
+.dropdown-content {
+    display: none;
+}
+
+
+/* Only using ID for presenting the hamburger feature */
+#mobileNavDropdown:target {
+    display: block;
+}
+
+/* home feed */
+
+.cta-button {
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    background: var(--periwinkle);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttons-desktop {
+    display: none;
+}
+
+.cta-button {
+    display: none;
+}
+
+.outfit-list {
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+/* Card components */
+
+.card {
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem auto;
+}
+
+.card-header {
+    margin-bottom: 0.5rem;
+}
+
+.card-header h1 {
+    color: var(--secondary);
+}
+
+.card-content {
+    padding: 1rem;
+    border-radius: 12px;
+    width: 80vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-img {
+    width: 100%;
+    background: #FFF;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Icon styling */
+
+.layer-icon {
+    position: fixed;
+    bottom: 1.7rem;
+    right: 1rem;
+    z-index: 1000;
+
+}
+
+/* Calender compoments */
+
+.calendar-container {
+    display: grid;
+    place-items: center;
+    height: 80vh;
+    width: auto;
+
+}
+
+.calendar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.calender-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.calender-month-arrow {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.stamp-box {
+    height: 1.5rem;
+}
+
+.calendar-day {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    display: inline-flex;
+
+}
+
+.calendar-week,
+.calendar-dayofweek {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-week {
+    grid-auto-rows: 5rem;
+    text-align: right;
+}
+
+.calendar-dayofweek {
+    grid-auto-rows: 3rem;
+    color: var(--secondary);
+    align-items: center;
+    text-align: center;
+}
+
+.stamp-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+/* Style outfit page */
+
+.style-content .card-header {
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.style-content .card {
+    max-width: 500px;
+    width: 80vw;
+}
+
+.style-content .cta-button {
+    display: flex;
+}
+
+/* Profile */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-name {
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.profile-username {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-actions {
+    display: flex;
+}
+
+.edit-button,
+.logout-button {
+    padding: 10px 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #2F3F77;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover,
+.logout-button:hover {
+    background-color: #1e2d5b;
+}
+
+/*Add Item page*/
+.add-item-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.add-item-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-item-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.add-item-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.add-item-form input[type="text"],
+.add-item-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.add-item-form input[type="file"] {
+    margin-bottom: 20px;
+}
+
+.add-item-form button {
+    padding: 10px 20px;
+    background-color: #2F3F77;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-item-form button:hover {
+    background-color: #1e2d5b;
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #999;
+}
+
+/* Clothing item components */
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    padding: 8px 0px;
+    max-width: 90vw;
+}
+
+div.scrollmenu div {
+    display: inline-block;
+    padding: 0px 16px;
+}
+
+div.scrollmenu a {
+    text-decoration: none;
+    color: var(--secondary)
+}
+
+div.scrollmenu .selected-item a {
+    color: var(--primary)
+}
+
+div.scrollmenu .selected-item img {
+    width: 24px;
+}
+
+/* clothing items styling */
+.closet {
+    padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clothing-item {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.clothing-item img {
+    max-width: 130px;
+    max-height: 130px;
+
+}
+
+@media (min-width: 598px) {
+    .layer-icon {
+        display: none;
+    }
+
+    .buttons-desktop.feed {
+        width: 80vw;
+        max-width: 500px;
+    }
+
+    .buttons-desktop.calendar-buttons {
+        width: 70vw;
+        max-width: 800px;
+    }
+
+    .buttons-desktop {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        margin: auto;
+    }
+
+    .cta-button {
+        display: flex;
+        padding: 0.75rem 1.5rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        color: white;
+        text-decoration: none;
+        border-radius: 0.75rem;
+        background: var(--periwinkle);
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .buttons-desktop .feed-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .closet-intro {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .icon-group {
+        display: none;
+    }
+
+    .menu-list-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .calendar {
+        width: 70vw;
+        height: 80vh;
+        max-width: 800px;
+        max-height: 600px;
+    }
+
+    /* Only using ID for presenting the hamburger feature */
+    #mobileNavDropdown:target {
+        display: none;
+    }
+
+    /* clothing items */
+    .closet {
+        width: 60vw;
+    }
+
+    .clothing-item {
+        width: 300px;
+        height: 300px;
+    }
+
+    .clothing-item img {
+        max-width: 270px;
+        max-height: 270px;
+    }
+
+}
