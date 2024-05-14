@@ -1,0 +1,100 @@
+{
+    "filterOptions": [
+        {
+            "id": "category",
+            "label": "Category",
+            "options": [
+                {
+                    "value": "tops",
+                    "label": "Tops"
+                },
+                {
+                    "value": "outerwear",
+                    "label": "Outerwear"
+                },
+                {
+                    "value": "bottoms",
+                    "label": "Bottoms"
+                },
+                {
+                    "value": "dresses and skirts",
+                    "label": "Dresses and Skirts"
+                },
+                {
+                    "value": "shoes",
+                    "label": "Shoes"
+                },
+                {
+                    "value": "accessories",
+                    "label": "Accessories"
+                }
+            ]
+        },
+        {
+            "id": "weather",
+            "label": "Weather",
+            "options": [
+                {
+                    "value": "sunny",
+                    "label": "Sunny"
+                },
+                {
+                    "value": "windy",
+                    "label": "Windy"
+                },
+                {
+                    "value": "rainy",
+                    "label": "Rainy"
+                },
+                {
+                    "value": "cold",
+                    "label": "Cold"
+                }
+            ]
+        },
+        {
+            "id": "occasion",
+            "label": "Occasion",
+            "options": [
+                {
+                    "value": "casual",
+                    "label": "Casual"
+                },
+                {
+                    "value": "formal",
+                    "label": "Formal"
+                },
+                {
+                    "value": "work",
+                    "label": "Work"
+                },
+                {
+                    "value": "exercise",
+                    "label": "Exercise"
+                }
+            ]
+        },
+        {
+            "id": "aesthetics",
+            "label": "Aesthetics",
+            "options": [
+                {
+                    "value": "y2k",
+                    "label": "Y2K"
+                },
+                {
+                    "value": "preppy",
+                    "label": "Preppy"
+                },
+                {
+                    "value": "balletcore",
+                    "label": "Balletcore"
+                },
+                {
+                    "value": "simple",
+                    "label": "Simple"
+                }
+            ]
+        }
+    ]
+}

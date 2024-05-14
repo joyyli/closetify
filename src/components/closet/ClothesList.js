@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { act, useState } from 'react';
+import options from '../../data/options.json'
 export { ClothesList };
 
 function ClothesList(props) {
@@ -22,47 +23,38 @@ function ClothesList(props) {
         </div>
     ));
 
+    const weatherOptions = options.filterOptions
+        .filter(obj => obj.id === "weather")
+        .flatMap(obj => obj.options);
 
-    const weatherOptions = [
-        { value: 'Sunny', label: 'Sunny' },
-        { value: 'Windy', label: 'Windy' },
-        { value: 'Rainy', label: 'Rainy' },
-        { value: 'Cold', label: 'Cold' }
-    ];
+    const occasionOptions = options.filterOptions
+        .filter(obj => obj.id === "occasion")
+        .flatMap(obj => obj.options);
 
-    const occasionOptions = [
-        { value: 'Casual', label: 'Casual' },
-        { value: 'Formal', label: 'Formal' },
-        { value: 'Work', label: 'Work' },
-        { value: 'Exercise', label: 'Exercise' }
-    ];
+    const aestheticOptions = options.filterOptions
+        .filter(obj => obj.id === "aesthetics")
+        .flatMap(obj => obj.options);
 
-    const aestheticOptions = [
-        { value: 'y2k', label: 'Y2K' },
-        { value: 'Preppy', label: 'Preppy' },
-        { value: 'Balletcore', label: 'Balletcore' },
-        { value: 'Simple', label: 'Simple' }
-    ];
+    const categoryOptions = options.filterOptions
+        .filter(obj => obj.id === "category")
+        .flatMap(obj => obj.options);
 
-
-    let newClothesData = [...props.data];
-
-
-
-
+    const categoryOptionsArray = categoryOptions.map(option => (
+        <SortCategory
+            key={option.value}
+            active={category == option.value}
+            label={option.label}
+            name={option.value}
+            onClick={() => handleFilterChange(option.value, weather, occasion, aesthetic)}
+        />
+    ))
 
     return (<div className="closet-intro">
         <div className="scrollmenu">
-            {['Tops', 'Bottoms', 'Dresses and Skirts', 'Outerwear', 'Shoes', 'Accessories'].map(name => (
-                <SortCategory
-                    key={name}
-                    active={category === name}
-                    name={name}
-                    onClick={() => handleFilterChange(name, weather, occasion, aesthetic)}
-                />
-            ))}
+            {categoryOptionsArray}
         </div>
 
+        {/* Did not map the Filter level, since individual Filter need to return the value to callbackfunction  */}
         <div className="scrollmenu">
             <FilterPill
                 id="weather"
@@ -101,7 +93,7 @@ function SortCategory(props) {
     return (
         <div className={"item" + iconclassName}>
             {props.active && <img src="icon/pin.svg" alt="pin" />}
-            <a href="#" onClick={() => props.onClick(props.value)}>{props.name}</a>
+            <a onClick={props.onClick}>{props.label}</a>
         </div>
     )
 }
@@ -120,4 +112,3 @@ function FilterPill({ id, name, value, onChange, options }) {
 }
 
 export default FilterPill;
-
