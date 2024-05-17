@@ -11,6 +11,7 @@ import MyClosetPage from './MyclosetPage.js';
 import ProfilePage from './ProfilePage.js';
 import AdditemPage from './AdditemPage.js';
 import StyleOutfit from './StyleOutfitPage.js';
+import ItemForm from './additem/additemForm.js';
 
 export default function App(props) {
     const [outfitList, setOutfitList] = useState([]);
@@ -24,18 +25,20 @@ export default function App(props) {
 
             {/* uncomment components to render pages */}
 
-            {/* <OutfitFeed outfits={outfitsData}/> */}
+            <OutfitFeed outfits={outfitsData}/>
             {/* <MyClosetPage ClothesList={clothes}/> */}
             {/* <ProfilePage /> */}
+            {/* <StyleOutfit ClothesList={clothes} /> */}
 
-            {/* ???? */}
+            {/* note for Ella: which one to use? */}
+            
             {/* <AdditemPage addNewOutfit={addNewOutfit} /> */}
+            {/* <ItemForm /> */}
 
-            <StyleOutfit ClothesList={clothes} />
 
             <footer role="contentinfo">
                 <p>
-                    &copy 2024 Closetify; All rights reserved.
+                    &copy; 2024 Closetify; All rights reserved.
                 </p>
             </footer>
         </div>

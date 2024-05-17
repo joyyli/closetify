@@ -4,6 +4,9 @@ import { ClothesList } from './closet/ClothesList';
 
 
 export default function StyleOutfit(props) {
+    // TODO:
+    // make all clothings in Clothes list buttons, where onClick they're added to canvas
+
     // filtering logic
     const [category, setCategory] = useState('');
     const [weather, setWeather] = useState('');
