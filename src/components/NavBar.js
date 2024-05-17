@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// temporary, move to state
+// TODO: temporary, feed in props from App later after setting up routing
 const navItems = [{ current: true, linkTo: "index.html", text: "Home" },
 { current: false, linkTo: "mycloset.html", text: "My Closet" },
 { current: false, linkTo: "profile.html", text: "Profile" }];
@@ -9,7 +9,6 @@ export default function NavBar(props) {
 
     const toggleMobileMenu = function(event) {
         toggleMobile(!showMobileMenu);
-        console.log("hello!!");
     }
 
     return (
@@ -27,6 +26,7 @@ export default function NavBar(props) {
 }
 
 // DESKTOP NAV
+
 // TODO: change <a> to <link> after routing
 function DesktopNavItem({ current, linkTo, text }) {
     // current is a boolean
@@ -63,7 +63,8 @@ function DesktopNav(props) {
 
 // MOBILE NAV
 
-// TODO: fix dropdown behavior to be interactive
+// TODO: fix dropdown behavior: why does it scroll down to hide the top bar? 
+// better to show top bar so it can be closed easily.
 function MobileNav(props) {
     return (
         <div className="icon-group" onClick={props.toggleMobileMenu}>
