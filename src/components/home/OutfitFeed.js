@@ -16,6 +16,7 @@ export default function OutfitFeed(props) {
     // button handler
     const onAddOutfit = (event) => {
         // TODO: navigate to StyleOutfitPage
+        console.log("nav to style outfit");
     }
 
     return (
@@ -29,6 +30,10 @@ export default function OutfitFeed(props) {
             <section className="outfit-list">
                 {outfitArray}
             </section>
+
+            <div className="layer-icon" onClick={onAddOutfit}>
+                <a href="styleoutfit.html"><img src="icon/Property 1=add outfit.svg" alt="Add outfit icon" /></a>
+            </div>
         </main>
     );
 }
