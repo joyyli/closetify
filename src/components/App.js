@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import ClothesList from '../data/clothes.json';
 import MyclosetPage from './MyclosetPage';
-//import AddOutfitButton from './home/AddOutfitButton';
-import FeedToggle from './home/FeedToggle';
 import OutfitFeed from './home/OutfitFeed';
-
+import NavBar from './NavBar';
+import ProfilePage from './ProfilePage';
+import AdditemPage from './AdditemPage';
 
 const outfits = [
     { id: 1, image: 'path/to/image1.jpg', name: 'Outfit 1', description: 'A nice casual outfit' },
@@ -11,19 +12,24 @@ const outfits = [
 ];
 
 export default function App(props) {
-    const [view, setView] = useState('mycloset'); // Default view is 'mycloset'
+    const [view, setView] = useState('home'); // Default view is 'mycloset'
+    const [outfitList, setOutfitList] = useState(outfits);
 
     const handleToggle = (newView) => {
         setView(newView);
     };
 
+    const addNewOutfit = (newOutfit) => {
+        setOutfitList([...outfitList, newOutfit]);
+    };
+
     return (
         <div className="app">
-            {/* {<AddOutfitButton />} */}
-            <FeedToggle onToggle={handleToggle} />
-
-            {view === 'mycloset' && <MyclosetPage clothesList={props.clothesList} />}
-            {view === 'outfitFeed' && <OutfitFeed outfits={outfits} />}
+            <NavBar onNavigate={setView} />
+            {view === 'home' && <OutfitFeed outfits={outfitList} />}
+            {view === 'mycloset' && <MyclosetPage ClothesList={ClothesList} />}
+            {view === 'profile' && <ProfilePage />}
+            {view === 'additem' && <AdditemPage addNewOutfit={addNewOutfit} />}
         </div>
     );
 }

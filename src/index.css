@@ -35,6 +35,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 /* footer */
@@ -65,9 +66,58 @@ footer p {
     backdrop-filter: blur(10px);
 }
 
-
-
 /* header - nav bar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 20px;
+    background-color: transparent;
+}
+
+.navbar button {
+    color: navy;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    text-decoration: underline;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li {
+    margin-left: 20px;
+    font-size: 20px;
+    color: navy;
+    cursor: pointer;
+  }
+
+  .nav-links li:hover {
+    text-decoration: underline; /* Optional: underline on hover */
+  }
+  
+  .clothes-list {
+    margin-top: 20px;
+  }
+  
+  .clothes-list div {
+    margin-bottom: 20px;
+  }
+
+.app {
+    padding: 2rem;
+    text-align: center;
+}
 
 .menu-bar {
     display: flex;
@@ -187,6 +237,7 @@ footer p {
 
 .card-header {
     margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .card-header h1 {
@@ -204,6 +255,7 @@ footer p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: left;
 }
 
 .card-img {
@@ -302,6 +354,33 @@ footer p {
 }
 
 /* Style outfit page */
+
+.outfit-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outfit {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.add-outfit-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.add-outfit-button:hover {
+    background-color: #0056b3;
+}
 
 .style-content .card-header {
     max-width: 500px;

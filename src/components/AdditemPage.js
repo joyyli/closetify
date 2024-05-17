@@ -1,26 +1,43 @@
-// import statements
-import { useState } from 'react'
-import MyclosetPage from './MyclosetPage';
-import ItemForm from './additem/additemForm'
+import React, { useState } from 'react';
+import ItemForm from './additem/additemForm';
 
+export default function AdditemPage({ addNewOutfit, onNavigate }) {
+    const [itemPhoto, setItemPhoto] = useState(null);
+    const [fields, setFields] = useState({
+        category: '',
+        weather: '',
+        occasion: '',
+        aesthetics: '',
+    });
 
-export default function Additem(props) {
+    const handleInputChange = (field) => (event) => {
+        setFields({
+            ...fields,
+            [field]: event.target.value
+        });
+    };
 
-    //setted for callBack later
-    const [img, setImg] = useState(null);
-    const [category, setCategory] = useState('');
-    const [weather, setWeather] = useState('');
-    const [occasion, setOccasion] = useState('');
-    const [Aesthetic, setAesthetic] = useState('');
-
-    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const newOutfit = {
+            id: Date.now(),
+            image: URL.createObjectURL(itemPhoto),
+            name: fields.category,
+            description: `${fields.weather} - ${fields.occasion} - ${fields.aesthetics}`
+        };
+        addNewOutfit(newOutfit);
+        onNavigate('home');
+    };
 
     return (
         <div className="add-item-container">
-            <h1>Add New Item to Your Closet</h1>
-            <div className="add-item-form">
-                <ItemForm />
-            </div>
+            <h1>Add New Outfit</h1>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <label htmlFor="item-photo">Upload a photo of the outfit:</label>
+                <input type="file" id="item-photo" name="item-photo" accept="image/*" required onChange={e => setItemPhoto(e.target.files[0])} />
+                {/* Repeat the SelectField for each filter */}
+                <button type="submit">Add Outfit</button>
+            </form>
         </div>
     );
 }

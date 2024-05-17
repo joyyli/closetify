@@ -17,7 +17,7 @@ export default function Mycloset(props) {
         setAesthetic(newAesthetic);
     };
 
-    const displayedData = props.clothesList.filter(item =>
+    const displayedData = props.ClothesList.filter(item =>
         (category === '' || item.category === category) &&
         (weather === '' || item.weather === weather) &&
         (occasion === '' || item.occasion === occasion) &&

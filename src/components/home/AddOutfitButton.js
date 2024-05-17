@@ -1,18 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function AddOutfitButton() {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/styleoutfit');
-    };
-
+export default function AddOutfitButton({ onClick }) {
     return (
-        <button onClick={handleClick} className="add-outfit-button">
-            Add New Outfit
+        <button className="add-outfit-button" onClick={onClick}>
+            Add Outfit
         </button>
     );
 }
-
-export default AddOutfitButton;
