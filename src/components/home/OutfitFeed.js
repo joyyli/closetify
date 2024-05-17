@@ -1,7 +1,14 @@
-import React from 'react';
-import AddOutfitButton from './AddOutfitButton';
+import React, { useEffect, useState } from 'react';
+import OutfitCard from './OutfitCard';
+import outfitsData from '../../data/outfits.json';
 
-export default function OutfitFeed({ outfits, onAddOutfit }) {
+export default function OutfitFeed({ onAddOutfit }) {
+    const [outfits, setOutfits] = useState([]);
+
+    useEffect(() => {
+        setOutfits(outfitsData);
+    }, []);
+
     return (
         <main role="main">
             <div className="buttons-desktop feed">
@@ -25,47 +32,16 @@ export default function OutfitFeed({ outfits, onAddOutfit }) {
                 </div>
             </div>
 
-            <section class="outfit-list">
-            <div class="card">
-                <div class="card-header">
-                    <h1>Saturday, April 13</h1>
-                </div>
-                <div class="card-content glass">
-                    <p>Outfit name</p>
-                    <div class="card-img"> <img src="img/bc9bad3ed5a4c7222ae84a8294815f5a.jpg"
-                            alt="sample of a styled outfit" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h1>Friday, April 12</h1>
-                </div>
-                <div class="card-content glass">
-                    <p>Outfit name</p>
-                    <div class="card-img"> <img src="img/5398cde0292f3bde92c83d182da9766f.jpg"
-                            alt="sample of a styled outfit" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h1>Thursday, April 11</h1>
-                </div>
-                <div class="card-content glass">
-                    <p>Outfit name</p>
-                    <div class="card-img"> <img src="img/eb2a27115c028c5f79b9e820e12c01ce.jpg"
-                            alt="sample of a styled outfit" />
-                    </div>
-                </div>
-            </div>
-            <div class="layer-icon">
-                <a href="styleoutfit.html"><img src="icon/Property 1=add outfit.svg" alt="Add outfit icon" /></a>
-
-            </div>
-        </section>
+            <section className="outfit-list">
+                {outfits.map(outfit => (
+                    <OutfitCard
+                        key={outfit.id}
+                        outfitName={outfit.outfitName}
+                        outfitDate={outfit.outfitDate}
+                        imageUrl={outfit.imageUrl}
+                    />
+                ))}
+            </section>
         </main>
     );
 }

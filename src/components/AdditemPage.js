@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ItemForm from './additem/additemForm';
 
 export default function AdditemPage({ addNewOutfit, onNavigate }) {
     const [itemPhoto, setItemPhoto] = useState(null);
