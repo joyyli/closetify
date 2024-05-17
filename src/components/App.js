@@ -10,6 +10,7 @@ import OutfitFeed from './home/OutfitFeed';
 import MyClosetPage from './MyclosetPage.js';
 import ProfilePage from './ProfilePage.js';
 import AdditemPage from './AdditemPage.js';
+import StyleOutfit from './StyleOutfitPage.js';
 
 export default function App(props) {
     const [outfitList, setOutfitList] = useState([]);
@@ -23,12 +24,14 @@ export default function App(props) {
 
             {/* uncomment components to render pages */}
 
-            <OutfitFeed outfits={outfitsData}/>
+            {/* <OutfitFeed outfits={outfitsData}/> */}
             {/* <MyClosetPage ClothesList={clothes}/> */}
             {/* <ProfilePage /> */}
 
             {/* ???? */}
             {/* <AdditemPage addNewOutfit={addNewOutfit} /> */}
+
+            <StyleOutfit ClothesList={clothes} />
 
             <footer role="contentinfo">
                 <p>

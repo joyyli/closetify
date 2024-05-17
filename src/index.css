@@ -87,7 +87,7 @@ footer p {
 
 .icon-svg {
     width: 1.5rem;
-    color: #262626;
+    color: var(--primary);
 }
 
 .icon-menu {
@@ -343,7 +343,7 @@ footer p {
     padding: 10px 20px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: #2F3F77;
+    background-color: var(--secondary);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -396,7 +396,7 @@ footer p {
 
 .add-item-form button {
     padding: 10px 20px;
-    background-color: #2F3F77;
+    background-color: var(--secondary));
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -446,6 +446,20 @@ div.scrollmenu .selected-item a {
 div.scrollmenu .selected-item img {
     width: 24px;
 }
+
+/* style filter pills */
+select {
+    /* custom rather than default styping */
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+  }
 
 /* clothing items styling */
 .closet {
