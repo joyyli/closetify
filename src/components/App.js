@@ -25,16 +25,11 @@ export default function App(props) {
 
             {/* uncomment components to render pages */}
 
-            <OutfitFeed outfits={outfitsData}/>
-            {/* <MyClosetPage ClothesList={clothes}/> */}
+            <OutfitFeed outfits={outfitsData} />
+            {/* <MyClosetPage ClothesList={clothes} /> */}
             {/* <ProfilePage /> */}
             {/* <StyleOutfit ClothesList={clothes} /> */}
-
-            {/* note for Ella: which one to use? */}
-            
-            {/* <AdditemPage addNewOutfit={addNewOutfit} /> */}
-            {/* <ItemForm /> */}
-
+            {/* <AdditemPage /> */}
 
             <footer role="contentinfo">
                 <p>

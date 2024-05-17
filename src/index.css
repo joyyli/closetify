@@ -187,7 +187,7 @@ footer p {
     width: 80vw;
     /* note: comment this out for the Canvas component
     might need to come back to fix */
-    
+
     /* height: 90vw;
     max-height: 500px; */
     max-width: 500px;
@@ -462,7 +462,7 @@ select {
     font-size: inherit;
     cursor: inherit;
     line-height: inherit;
-  }
+}
 
 /* clothing items styling */
 .closet {
@@ -492,6 +492,7 @@ select {
 }
 
 @media (min-width: 598px) {
+
     /* clothing items */
     .closet {
         width: 60vw;
@@ -568,7 +569,7 @@ select {
         max-width: 800px;
         max-height: 600px;
     }
-    
+
     .menu-list-desktop {
         display: flex;
         justify-content: space-between;
