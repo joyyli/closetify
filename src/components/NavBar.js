@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 // TODO: temporary, feed in props from App later after setting up routing
 const navItems = [{ current: true, linkTo: "index.html", text: "Home" },
 { current: false, linkTo: "mycloset.html", text: "My Closet" },
@@ -7,7 +7,8 @@ const navItems = [{ current: true, linkTo: "index.html", text: "Home" },
 export default function NavBar(props) {
     const [showMobileMenu, toggleMobile] = useState(false);
 
-    const toggleMobileMenu = function(event) {
+    const toggleMobileMenu = function (event) {
+        event.preventDefault();
         toggleMobile(!showMobileMenu);
     }
 
@@ -17,7 +18,7 @@ export default function NavBar(props) {
                 <div className="logo">
                     <a href="index.html"><img src="icon/logo 2.svg" alt="closetify" /></a>
                 </div>
-                <MobileNav toggleMobileMenu={toggleMobileMenu}/>
+                <MobileNav toggleMobileMenu={toggleMobileMenu} />
                 <DesktopNav />
             </div>
             {showMobileMenu && <MobileDropdownMenu />}
