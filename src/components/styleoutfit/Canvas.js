@@ -1,18 +1,130 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Stage, Layer, Image, Group, Transformer } from 'react-konva';
 import useImage from 'use-image';
+// temporary
+const tempImages = [{ src: 'img/black t-shirt.png', x: 10, y: 10, id: '1' },
+        { src: 'img/button-up.png', x: 10, y: 10, id: '2' },
+        { src: 'img/sweater.png', x: 10, y: 10, id: '3' }];
 
+
+// canvas with information, button, etc.
+export function CanvasFrame(props) {
+
+    // TODO: export canvas to image
+    const saveCanvas = () => {
+        console.log("save canvas");
+    }
+
+    // Measures size of an outer div so Canvas knows how big to be
+    const divRef = useRef();
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        const updateWidth = () => {
+            if (divRef.current) {
+                setWidth(divRef.current.offsetWidth);
+            }
+        };
+
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+
+        return () => {
+            window.removeEventListener('resize', updateWidth);
+        };
+    }, []);
+
+    return (
+            <div className="col1">
+                <div className="card">
+                    <div className="card-header">
+                        <OutfitDate />
+                        <SaveButton onClick={saveCanvas}/>
+                    </div>
+                    <div className="card-content glass" ref={divRef}>
+                        <OutfitName/>
+                        {/* -32 because of padding size */}
+                        <Canvas size={width - 32}/>
+                    </div>
+                </div>
+            </div>
+    );
+}
+
+// code modified from https://konvajs.org/docs/react/Transformer.html
+function Canvas(props) {
+    const [selectedId, selectImage] = useState(null);
+    const [images, setImages] = useState(tempImages);
+
+    const checkDeselect = (e) => {
+        const clickedOnEmpty = e.target === e.target.getStage();
+        if (clickedOnEmpty) {
+            selectImage(null);
+        }
+    };
+
+    const imagesArray = images.map((img, i) => {
+        return (
+            <URLImage
+                key={img.id}
+                shapeProps={img}
+                isSelected={img.id === selectedId}
+                onSelect={() => {
+                    selectImage(img.id);
+                }}
+                onChange={(newAttrs) => {
+                    const updatedImages = images.map(image =>
+                        image.id === img.id ? { ...image, ...newAttrs } : image
+                    );
+                    setImages(updatedImages);
+                }}
+            />
+        );
+    });
+
+    return (
+        <div className="card-img">
+            <Stage
+                width={props.size}
+                height={props.size}
+                onMouseDown={checkDeselect}
+                onTouchStart={checkDeselect} >
+                <Layer>
+                    {imagesArray}
+                </Layer>
+            </Stage>
+        </div>
+    );
+}
+
+// constructs an image that can be transformed in the canvas
+// code modified from https://konvajs.org/docs/react/Images.html
 const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
+    // loads image using useImage hook
     const [image] = useImage(shapeProps.src);
+
     const imageRef = useRef();
     const trRef = useRef();
 
+    // bind transformer to image if it's selected
     useEffect(() => {
         if (isSelected) {
             trRef.current.nodes([imageRef.current]);
             trRef.current.getLayer().batchDraw();
         }
     }, [isSelected]);
+
+    // constrains size of image if too large
+    useEffect(() => {
+        if (image) {
+            const img = imageRef.current;
+            const maxDim = 250;
+            const scale = Math.min(maxDim / image.width, maxDim / image.height);
+
+            img.width(image.width * scale);
+            img.height(image.height * scale);
+        }
+    }, [image]);
 
     return (
         <>
@@ -47,87 +159,13 @@ const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
     );
 };
 
-function Canvas(props) {
-    const [selectedId, selectImage] = useState(null);
-    const [images, setImages] = useState([
-        { src: 'img/black t-shirt.png', x: 10, y: 10, id: '1' },
-        { src: 'img/button-up.png', x: 10, y: 10, id: '2' },
-        { src: 'img/button-up.png', x: 10, y: 10, id: '3' }
-    ]);
-
-
-    const [stageSize, setStageSize] = useState({ width: 500, height: 500 });
-    const stageRef = useRef(null);
-
-    const updateStageSize = () => {
-        const container = stageRef.current?.parentNode;
-        if (container) {
-            const rect = container.getBoundingClientRect();
-            setStageSize({ width: rect.width, height: rect.height });
-        }
-    };
-
-    useEffect(() => {
-        updateStageSize();
-        window.addEventListener('resize', updateStageSize);
-        return () => {
-            window.removeEventListener('resize', updateStageSize);
-        };
-    }, []);
-
-
-    const checkDeselect = (e) => {
-        const clickedOnEmpty = e.target === e.target.getStage();
-        if (clickedOnEmpty) {
-            selectImage(null);
-        }
-    };
-
-
-    return (
-        <div className="card-img">
-            <Stage
-                width={stageSize.width}
-                height={stageSize.height}
-                onMouseDown={checkDeselect}
-                onTouchStart={checkDeselect} >
-                <Layer>
-                    {images.map((img, i) => {
-                        return (
-                            <URLImage
-                                key={img.id}
-                                shapeProps={img}
-                                isSelected={img.id === selectedId}
-                                onSelect={() => {
-                                    selectImage(img.id);
-                                }}
-                                onChange={(newAttrs) => {
-                                    const updatedImages = images.map(image =>
-                                        image.id === img.id ? { ...image, ...newAttrs } : image
-                                    );
-                                    setImages(updatedImages);
-                                }}
-                            />
-                        );
-                    })}
-                </Layer>
-            </Stage>
-        </div>
-    );
-}
-
 function SaveButton(props) {
-    // TODO: handle button interaction
-    const handleClick = (event) => {
-        // save canvas state/take screenshot
-        console.log("Clicked save button.")
-    }
 
     // TODO: change routing so that database is updated with new image
     return (
-        <a className="cta-button" href="index_after.html" role="button">
+        <div className="cta-button" role="button">
             Save
-        </a>
+        </div>
     );
 }
 
@@ -142,22 +180,4 @@ function OutfitName(props) {
     // TODO: allow user to change name of outfit
     const name = "Untitled";
     return <p>{name}</p>;
-}
-
-export function CanvasFrame(props) {
-    return (
-            <div className="col1">
-                <div className="card">
-                    <div className="card-header">
-                        <OutfitDate />
-                        <SaveButton />
-                    </div>
-                    <div className="card-content glass">
-                        <OutfitName />
-                        <Canvas />
-                    </div>
-                </div>
-            </div>
-    );
-
 }

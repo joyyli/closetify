@@ -185,9 +185,12 @@ footer p {
     padding: 1rem;
     border-radius: 12px;
     width: 80vw;
-    height: 90vw;
+    /* note: commentted this out for the Canvas component
+    might need to come back to fix */
+
+    /* height: 90vw;
+    max-height: 500px; */
     max-width: 500px;
-    max-height: 500px;
     margin: auto;
     display: flex;
     flex-direction: column;
