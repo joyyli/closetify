@@ -5,9 +5,9 @@ export default function OutfitCard({ outfitName, outfitDate, imageUrl }) {
         <div className="card">
             <div className="card-header">
                 <h1>{outfitDate}</h1>
-                <p>{outfitName}</p>
             </div>
             <div className="card-content glass">
+            <p>{outfitName}</p>
                 <div className="card-img">
                     <img src={imageUrl} alt={outfitDate} />
                 </div>

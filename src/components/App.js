@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import OutfitFeed from './home/OutfitFeed';
 import MyClosetPage from './MyclosetPage.js';
 import ProfilePage from './ProfilePage.js';
+import AdditemPage from './AdditemPage.js';
 
 export default function App(props) {
     const [view, setView] = useState('home');
@@ -19,11 +20,19 @@ export default function App(props) {
 
     return (
         <div className="app">
-            <NavBar onNavigate={setView} />
-            {view === 'home' && <OutfitFeed outfits={outfitList} onAddOutfit={() => setView('additem')} />}
-            {view === 'mycloset' && <MyClosetPage />}
-            {view === 'profile' && <ProfilePage />}
-            {view === 'additem' && <AddItemPage addNewOutfit={addNewOutfit} onNavigate={setView} />}
+            <NavBar />
+            
+            {/* uncomment components to render pages */}
+            <OutfitFeed outfits={outfitsData}/>
+
+
+
+
+            <footer role="contentinfo">
+                <p>
+                    &copy 2024 Closetify; All rights reserved.
+                </p>
+            </footer>
         </div>
     );
 }

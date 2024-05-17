@@ -85,7 +85,7 @@ function Canvas(props) {
 
 
     return (
-        <div class="card-img">
+        <div className="card-img">
             <Stage
                 width={stageSize.width}
                 height={stageSize.height}
@@ -146,20 +146,18 @@ function OutfitName(props) {
 
 export function CanvasFrame(props) {
     return (
-        <div class="style-content">
-            <div class="col1">
-                <div class="card">
-                    <div class="card-header">
+            <div className="col1">
+                <div className="card">
+                    <div className="card-header">
                         <OutfitDate />
                         <SaveButton />
                     </div>
-                    <div class="card-content glass">
+                    <div className="card-content glass">
                         <OutfitName />
                         <Canvas />
                     </div>
                 </div>
             </div>
-        </div>
     );
 
 }
