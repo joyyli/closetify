@@ -132,18 +132,6 @@ footer p {
     width: 2rem;
 }
 
-.dropdown-content {
-    display: none;
-}
-
-
-/* Only using ID for presenting the hamburger feature */
-#mobileNavDropdown:target {
-    display: block;
-}
-
-/* home feed */
-
 .cta-button {
     display: flex;
     padding: 0.75rem 1.5rem;
@@ -562,11 +550,6 @@ div.scrollmenu .selected-item img {
         height: 80vh;
         max-width: 800px;
         max-height: 600px;
-    }
-
-    /* Only using ID for presenting the hamburger feature */
-    #mobileNavDropdown:target {
-        display: none;
     }
     
     .menu-list-desktop {
