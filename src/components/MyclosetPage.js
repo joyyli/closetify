@@ -34,6 +34,9 @@ export default function Mycloset(props) {
                 data={displayedData}
                 applyFilterCallback={applyFilter}
             />
+            <div className="layer-icon">
+                <a href="additem.html"><img src="icon/Property 1=picture.svg" alt="Add item icon" /></a>
+            </div>
         </div>
     );
 }
