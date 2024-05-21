@@ -7,10 +7,10 @@ import clothes from '../data/clothes.json';
 // components
 import NavBar from './NavBar';
 import OutfitFeed from './home/OutfitFeed';
-import MyClosetPage from './MyclosetPage.js';
-import ProfilePage from './ProfilePage.js';
-import AdditemPage from './AdditemPage.js';
-import StyleOutfit from './StyleOutfitPage.js';
+import MyClosetPage from './closet/MyclosetPage.js';
+import ProfilePage from './profile/ProfilePage.js';
+import AdditemPage from './additem/AdditemPage.js';
+import StyleOutfit from './styleoutfit/StyleOutfitPage.js';
 import ItemForm from './additem/additemForm.js';
 
 export default function App(props) {

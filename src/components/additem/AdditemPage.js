@@ -1,6 +1,6 @@
 // import statements
 import { useState } from 'react'
-import ItemForm from './additem/additemForm'
+import ItemForm from './additemForm'
 
 
 export default function Additem(props) {

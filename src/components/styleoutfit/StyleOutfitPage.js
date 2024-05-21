@@ -1,10 +1,13 @@
-// import statements
-import { useState } from 'react'
-import { ClothesList } from './closet/ClothesList'
+import React, {useState} from 'react';
+import { CanvasFrame } from './Canvas';
+import { ClothesList } from '../closet/ClothesList';
 
 
-export default function Mycloset(props) {
+export default function StyleOutfit(props) {
+    // TODO:
+    // make all clothings in Clothes list buttons, where onClick they're added to canvas
 
+    // filtering logic
     const [category, setCategory] = useState('');
     const [weather, setWeather] = useState('');
     const [occasion, setOccasion] = useState('');
@@ -24,18 +27,15 @@ export default function Mycloset(props) {
         (aesthetic === '' || item.Aesthetic === aesthetic)
     );
 
+
     return (
-        <div className="closet-intro">
-            <a className="cta-button .buttons-desktop" href="additem.html" role="button">
-                <img src="icon/camera.svg" alt="camera and plus sign" />
-                Add Item
-            </a>
-            <ClothesList
-                data={displayedData}
-                applyFilterCallback={applyFilter}
-            />
-            <div className="layer-icon">
-                <a href="additem.html"><img src="icon/Property 1=picture.svg" alt="Add item icon" /></a>
+        <div className="style-content">
+            <CanvasFrame />
+            <div className="col2">
+                <ClothesList
+                    data={displayedData}
+                    applyFilterCallback={applyFilter}
+                />
             </div>
         </div>
     );
