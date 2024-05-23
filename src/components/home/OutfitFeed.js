@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import OutfitCard from './OutfitCard';
 
 export default function OutfitFeed(props) {
@@ -13,26 +14,25 @@ export default function OutfitFeed(props) {
         />
     ));
 
-    // button handler
+/*     // button handler
     const onAddOutfit = (event) => {
         // TODO: navigate to StyleOutfitPage
         console.log("nav to style outfit");
-    }
+    } */
 
     return (
         <main role="main">
             <div className="buttons-desktop feed">
-                <a className="cta-button" onClick={onAddOutfit} role="button">
+                <NavLink className="cta-button" to="/styleoutfit" role="button">
                     <img src="/icon/plus%20hanger.svg" alt="clothes hanger and plus sign" />
                     Add Outfit
-                </a>
+                </NavLink>
             </div>
             <section className="outfit-list">
                 {outfitArray}
             </section>
-
-            <div className="layer-icon" onClick={onAddOutfit}>
-                <a href="styleoutfit.html"><img src="icon/Property 1=add outfit.svg" alt="Add outfit icon" /></a>
+            <div className="layer-icon">
+                <NavLink to="/styleoutfit"><img src="icon/Property 1=add outfit.svg" alt="Add outfit icon" /></NavLink>
             </div>
         </main>
     );

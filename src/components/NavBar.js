@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-// TODO: temporary, feed in props from App later after setting up routing
-const navItems = [{ current: true, linkTo: "index.html", text: "Home" },
-{ current: false, linkTo: "mycloset.html", text: "My Closet" },
-{ current: false, linkTo: "profile.html", text: "Profile" }];
+import { NavLink } from 'react-router-dom';
+
+const navItems = [
+    { current: true, linkTo: "/home", text: "Home" },
+    { current: false, linkTo: "/closet", text: "My Closet" },
+    { current: false, linkTo: "/profile", text: "Profile" }
+];
 
 export default function NavBar(props) {
     const [showMobileMenu, toggleMobile] = useState(false);
@@ -16,7 +19,7 @@ export default function NavBar(props) {
         <header role="banner">
             <div className="menu-bar">
                 <div className="logo">
-                    <a href="index.html"><img src="icon/logo 2.svg" alt="closetify" /></a>
+                    <NavLink to="/home"><img src="icon/logo 2.svg" alt="closetify" /></NavLink>
                 </div>
                 <MobileNav toggleMobileMenu={toggleMobileMenu} />
                 <DesktopNav />
@@ -30,11 +33,10 @@ export default function NavBar(props) {
 
 // TODO: change <a> to <link> after routing
 function DesktopNavItem({ current, linkTo, text }) {
-    // current is a boolean
     return (
         <div className={current ? "nav-item nav-current" : "nav-item"}>
             {current && <img src="icon/pin.svg" alt="pin" />}
-            <a href={linkTo}>{text}</a>
+            <NavLink to={linkTo}>{text}</NavLink>
         </div>
     );
 }
@@ -43,6 +45,17 @@ function DesktopNav(props) {
     // TODO: pass down navitems as state variable so that "current" is updated onClick
 
     const navArray = navItems.map((item) => (
+        <DesktopNavItem key={item.text} current={item.current} linkTo={item.linkTo} text={item.text} />
+    ));
+
+    return (
+        <nav className="menu-list-desktop" role="navigation">
+            {navArray}
+        </nav>
+    );
+}
+
+/*     const navArray = navItems.map((item) => (
         <DesktopNavItem key={item.text} current={item.current} linkTo={item.linkTo} text={item.text} />
     ));
 
@@ -60,7 +73,7 @@ function DesktopNav(props) {
             </div>
         </nav>
     );
-}
+} */
 
 // MOBILE NAV
 
@@ -85,9 +98,9 @@ function MobileNavItem({ current, linkTo, text }) {
             <div className="menu-list-mobile-pin">
                 {current && <img src="icon/pin.svg" alt="pin" />}
             </div>
-            <a href={linkTo}>
+            <NavLink to={linkTo}>
                 <h1>{text}</h1>
-            </a>
+            </NavLink>
         </div>
     );
 }

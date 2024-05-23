@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // data
 import outfitsData from '../data/outfits.json';
@@ -10,8 +11,8 @@ import OutfitFeed from './home/OutfitFeed';
 import MyClosetPage from './closet/MyclosetPage.js';
 import ProfilePage from './profile/ProfilePage.js';
 import AdditemPage from './additem/AdditemPage.js';
-import StyleOutfit from './styleoutfit/StyleOutfitPage.js';
-import ItemForm from './additem/additemForm.js';
+import StyleOutfitPage from './styleoutfit/StyleOutfitPage.js';
+import additemForm from './additem/additemForm.js';
 
 export default function App(props) {
     const [outfitList, setOutfitList] = useState([]);
@@ -22,14 +23,16 @@ export default function App(props) {
     return (
         <div className="app">
             <NavBar />
-
-            {/* uncomment components to render pages */}
-
-            <OutfitFeed outfits={outfitsData} />
-            {/* <MyClosetPage ClothesList={clothes} /> */}
-            {/* <ProfilePage /> */}
-            {/* <StyleOutfit ClothesList={clothes} /> */}
-            {/* <AdditemPage /> */}
+            <Routes>
+                <Route path="/home" element={<OutfitFeed outfits={outfitsData} />} />
+                <Route path="/closet" element={<MyClosetPage ClothesList={clothes} />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/additem" element={<AdditemPage />}>
+                    <Route path="form" element={<additemForm />} />
+                </Route>
+                <Route path="/styleoutfit" element={<StyleOutfitPage ClothesList={clothes} />} />
+                <Route path="*" element={<Navigate to="/home" />} />
+            </Routes>
 
             <footer role="contentinfo">
                 <p>

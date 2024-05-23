@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { ClothesList } from './ClothesList'
 
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Mycloset(props) {
 
@@ -26,16 +28,16 @@ export default function Mycloset(props) {
 
     return (
         <div className="closet-intro">
-            <a className="cta-button .buttons-desktop" href="additem.html" role="button">
+            <NavLink className="cta-button .buttons-desktop" to="/additem" role="button">
                 <img src="icon/camera.svg" alt="camera and plus sign" />
                 Add Item
-            </a>
+            </NavLink>
             <ClothesList
                 data={displayedData}
                 applyFilterCallback={applyFilter}
             />
             <div className="layer-icon">
-                <a href="additem.html"><img src="icon/Property 1=picture.svg" alt="Add item icon" /></a>
+                <NavLink to="/additem"><img src="icon/Property 1=picture.svg" alt="Add item icon" /></NavLink>
             </div>
         </div>
     );
