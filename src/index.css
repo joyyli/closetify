@@ -115,7 +115,7 @@ footer p {
     text-decoration-line: none;
 }
 
-.menu-list-desktop .nav-current a {
+.menu-list-desktop .nav-current {
     color: var(--primary);
 }
 
@@ -126,10 +126,21 @@ footer p {
     justify-content: flex-start;
     align-items: center;
     gap: 16px;
+
+    font-size: 1.25rem;
+    text-decoration-line: none;
+}
+
+.menu-list-mobile h1 {
+    color: var(--secondary);
 }
 
 .menu-list-mobile-pin {
     width: 2rem;
+}
+
+.menu-list-mobile.nav-current h1 {
+    color: var(--primary);
 }
 
 .cta-button {

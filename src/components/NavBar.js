@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const navItems = [
-    { current: true, linkTo: "/home", text: "Home" },
-    { current: false, linkTo: "/closet", text: "My Closet" },
-    { current: false, linkTo: "/profile", text: "Profile" }
+    { linkTo: "/home", text: "Home" },
+    { linkTo: "/closet", text: "My Closet" },
+    { linkTo: "/profile", text: "Profile" }
 ];
 
 export default function NavBar(props) {
@@ -32,20 +32,25 @@ export default function NavBar(props) {
 // DESKTOP NAV
 
 // TODO: change <a> to <link> after routing
-function DesktopNavItem({ current, linkTo, text }) {
+function DesktopNavItem({linkTo, text}) {
     return (
-        <div className={current ? "nav-item nav-current" : "nav-item"}>
-            {current && <img src="icon/pin.svg" alt="pin" />}
-            <NavLink to={linkTo}>{text}</NavLink>
-        </div>
+        <NavLink
+            to={linkTo}
+            className={({ isActive }) => (isActive ? "nav-item nav-current" : "nav-item")}
+        >
+            {({ isActive }) => (
+                <>
+                    {isActive && <img src="icon/pin.svg" alt="pin" />}
+                    {text}
+                </>
+            )}
+        </NavLink>
     );
 }
 
 function DesktopNav(props) {
-    // TODO: pass down navitems as state variable so that "current" is updated onClick
-
     const navArray = navItems.map((item) => (
-        <DesktopNavItem key={item.text} current={item.current} linkTo={item.linkTo} text={item.text} />
+        <DesktopNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
 
     return (
@@ -54,26 +59,6 @@ function DesktopNav(props) {
         </nav>
     );
 }
-
-/*     const navArray = navItems.map((item) => (
-        <DesktopNavItem key={item.text} current={item.current} linkTo={item.linkTo} text={item.text} />
-    ));
-
-    return (
-        <nav className="menu-list-desktop" role="navigation">
-            <div className="nav-item nav-current">
-                <img src="icon/pin.svg" alt="pin" />
-                <a href="index.html">Home</a>
-            </div>
-            <div className="nav-item">
-                <a href="mycloset.html">My Closet</a>
-            </div>
-            <div className="nav-item">
-                <a href="profile.html">Profile</a>
-            </div>
-        </nav>
-    );
-} */
 
 // MOBILE NAV
 
@@ -91,23 +76,26 @@ function MobileNav(props) {
     );
 }
 
-function MobileNavItem({ current, linkTo, text }) {
-    // current is a boolean
+
+function MobileNavItem({ linkTo, text }) {
     return (
-        <div className="menu-list-mobile">
-            <div className="menu-list-mobile-pin">
-                {current && <img src="icon/pin.svg" alt="pin" />}
-            </div>
-            <NavLink to={linkTo}>
-                <h1>{text}</h1>
-            </NavLink>
-        </div>
+        <NavLink
+            to={linkTo}
+            className={({ isActive }) => (isActive ? "menu-list-mobile nav-current" : "menu-list-mobile")}
+        >
+            {({ isActive }) => (
+                <>
+                    {isActive && <img src="icon/pin.svg" alt="pin" />}
+                    <h1>{text}</h1>
+                </>
+            )}
+        </NavLink>
     );
 }
 
 function MobileDropdownMenu(props) {
     const navArray = navItems.map((item) => (
-        <MobileNavItem key={item.text} current={item.current} linkTo={item.linkTo} text={item.text} />
+        <MobileNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
     return (
         <div id="mobileNavDropdown" className="dropdown-content">
