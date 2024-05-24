@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import selectOptions from '../../data/options.json';
+import { useNavigate } from 'react-router-dom';
+
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+
+
+
 
 function SelectField({ id, label, value, onChange, options }) {
 
@@ -18,15 +24,16 @@ function SelectField({ id, label, value, onChange, options }) {
     );
 }
 
-export default function ItemForm() {
+export default function ItemForm({ addItemCallback, currentUser }) {
 
     //States are setted for future, currently not working
     const [itemPhoto, setItemPhoto] = useState(null);
+    const [photoUrl, setPhotoUrl] = useState(null);
     const [fields, setFields] = useState({
         category: '',
         weather: '',
         occasion: '',
-        aesthetics: '',
+        Aesthetics: '',
     });
 
     //EvenListenrs and Callbacks are setted for future, currently not working
@@ -37,9 +44,24 @@ export default function ItemForm() {
         });
     };
 
-    const handleSubmit = (event) => {
-        console.log(fields);
+    const navigateTo = useNavigate(); //navigation hook
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const locationRef = ref(getStorage(), `clothesImg/${currentUser?.userId}`) //override to the user's id when user update
+        const result = await uploadBytes(locationRef, itemPhoto) //get the reference of the result
+        const url = await getDownloadURL(result.ref); //use the reference to get the physical url
+        setPhotoUrl(url);
+
+        addItemCallback(fields, url);
+
+        navigateTo('/closet');
     };
+
+
+
 
     const filterArray = selectOptions.filterOptions.map(field => (
         <SelectField

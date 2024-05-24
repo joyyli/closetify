@@ -18,7 +18,7 @@ function ClothesList(props) {
     };
 
     const clothesArray = props.data.map(obj => (
-        <div className="clothing-item" key={obj.id}>
+        <div className="clothing-item" key={obj.timestamp}>
             <img src={obj.img} alt={obj.alt} />
         </div>
     ));
@@ -98,10 +98,10 @@ function SortCategory(props) {
     )
 }
 
-function FilterPill({ id, name, value, onChange, options }) {
+function FilterPill({ timestamp, name, value, onChange, options }) {
     return (
         <div className="filter-pill">
-            <select id={id} name={name} value={value} onChange={onChange}>
+            <select id={timestamp} name={name} value={value} onChange={onChange}>
                 <option value="">{name}</option>
                 {options.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
