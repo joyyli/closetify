@@ -6,7 +6,6 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
 
-
 function SelectField({ id, label, value, onChange, options }) {
 
     const optionList = options.map(option => (
@@ -28,7 +27,6 @@ export default function ItemForm({ addItemCallback, currentUser }) {
 
     //States are setted for future, currently not working
     const [itemPhoto, setItemPhoto] = useState(null);
-    const [photoUrl, setPhotoUrl] = useState(null);
     const [fields, setFields] = useState({
         category: '',
         weather: '',
@@ -50,10 +48,10 @@ export default function ItemForm({ addItemCallback, currentUser }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const locationRef = ref(getStorage(), `clothesImg/${currentUser?.userId}`) //override to the user's id when user update
+        const locationRef = ref(getStorage(), `clothesImg/${Date.now()}/${itemPhoto.name}`);
+
         const result = await uploadBytes(locationRef, itemPhoto) //get the reference of the result
         const url = await getDownloadURL(result.ref); //use the reference to get the physical url
-        setPhotoUrl(url);
 
         addItemCallback(fields, url);
 
