@@ -77,7 +77,7 @@
         "weather": "sunny",
         "occasion": "casual",
         "Aesthetic": "simple",
-        "img": "img/jeans.jpeg",
+        "img": "img/jeans.png",
         "alt": "jeans"
     },
     {
@@ -86,7 +86,7 @@
         "weather": "sunny",
         "occasion": "formal",
         "Aesthetic": "simple",
-        "img": "img/trouser.jpeg",
+        "img": "img/trouser.png",
         "alt": "trouser"
     },
     {
@@ -95,7 +95,7 @@
         "weather": "sunny",
         "occasion": "formal",
         "Aesthetic": "simple",
-        "img": "img/simple dress.jpeg",
+        "img": "img/simple dress.png",
         "alt": "simple dress"
     },
     {
@@ -104,7 +104,7 @@
         "weather": "cold",
         "occasion": "casual",
         "Aesthetic": "balletcore",
-        "img": "img/Scarf.jpeg",
+        "img": "img/Scarf.png",
         "alt": "Scarf"
     }
 ]
