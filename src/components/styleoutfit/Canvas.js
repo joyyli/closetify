@@ -44,7 +44,9 @@ export function CanvasFrame(props) {
                     <div className="card-content glass" ref={divRef}>
                         <OutfitName/>
                         {/* -32 because of padding size */}
-                        <Canvas size={width - 32}/>
+                        <Canvas 
+                        selectedClothes={props.selectedClothes}
+                        size={width - 32}/>
                     </div>
                 </div>
             </div>
@@ -53,8 +55,16 @@ export function CanvasFrame(props) {
 
 // code modified from https://konvajs.org/docs/react/Transformer.html
 function Canvas(props) {
+    const selectedClothes = props.selectedClothes;
     const [selectedId, selectImage] = useState(null);
-    const [images, setImages] = useState(tempImages);
+    const [images, setImages] = useState(selectedClothes);
+
+    // TODO: fix, why is [Object object]?
+    // useEffect(() => {
+    //     setImages(selectedClothes);
+    // }, [selectedClothes]);
+
+    console.log("images: " + images);
 
     const checkDeselect = (e) => {
         const clickedOnEmpty = e.target === e.target.getStage();

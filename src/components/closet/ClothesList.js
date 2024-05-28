@@ -1,5 +1,6 @@
-import React, { act, useState } from 'react';
+import React, { act, useState, useEffect } from 'react';
 import options from '../../data/options.json'
+import { useLocation } from 'react-router-dom';
 export { ClothesList };
 
 function ClothesList(props) {
@@ -17,9 +18,27 @@ function ClothesList(props) {
         props.applyFilterCallback(newCategory, newWeather, newOccasion, newAesthetic);
     };
 
+    const {setSelectedClothes, selectedClothes} = props;
+
+    const clickHandler = (event) => {
+        // make this toggle a className to mark it as selected
+        // have it be able to remove from array as well..
+        
+        const imagePath = event.target.getAttribute('src');
+        const key = event.target.getAttribute('key');
+        const currSize = selectedClothes.length;
+        
+        console.log("you clicked this path: " + imagePath);
+        setSelectedClothes([...selectedClothes, 
+            {src:{imagePath},
+             x: 10, 
+             y: 10, 
+             id:{currSize}}]);
+    }
+
     const clothesArray = props.data.map(obj => (
         <div className="clothing-item" key={obj.timestamp}>
-            <img src={obj.img} alt={obj.alt} />
+            <img src={obj.img} alt={obj.alt} onClick={clickHandler} key={obj.timestamp}/>
         </div>
     ));
 

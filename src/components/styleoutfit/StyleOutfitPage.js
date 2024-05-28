@@ -6,6 +6,9 @@ import { ClothesList } from '../closet/ClothesList';
 export default function StyleOutfit(props) {
     // TODO:
     // make all clothings in Clothes list buttons, where onClick they're added to canvas
+    const [selectedClothes, setSelectedClothes] = useState([]);
+
+    // adding will be like, setOnCanvas(onCanvas.push()) ?? is this ok..... or [...onCanvas, new stuff]
 
     // filtering logic
     const [category, setCategory] = useState('');
@@ -30,11 +33,13 @@ export default function StyleOutfit(props) {
 
     return (
         <div className="style-content">
-            <CanvasFrame />
+            <CanvasFrame selectedClothes={selectedClothes}/>
             <div className="col2">
                 <ClothesList
                     data={displayedData}
                     applyFilterCallback={applyFilter}
+                    selectedClothes={selectedClothes}
+                    setSelectedClothes={setSelectedClothes}
                 />
             </div>
         </div>
