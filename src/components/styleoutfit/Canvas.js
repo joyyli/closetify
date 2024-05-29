@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import { Stage, Layer, Image, Transformer } from 'react-konva';
 import useImage from 'use-image';
-// temporary
-const tempImages = [{ src: 'img/black t-shirt.png', x: 10, y: 10, id: '1' },
-{ src: 'img/button-up.png', x: 10, y: 10, id: '2' },
-{ src: 'img/sweater.png', x: 10, y: 10, id: '3' }];
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
 // canvas with information, button, etc.
 export function CanvasFrame(props) {
     // modified from https://konvajs.org/docs/react/Canvas_Export.html
     let stageRef = useRef(null);
-    const handleExport = (event) => {
+    const handleExport = async (event) => {
+        event.preventDefault();
         if (stageRef.current) {
+            // const locationRef = ref(getStorage(), `outfitsImg/${Date.now()}/$`);
+
             const uri = stageRef.current.toDataURL();
             console.log(uri);
             // TODO: upload to firebase

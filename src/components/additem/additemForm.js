@@ -27,6 +27,7 @@ export default function ItemForm({ addItemCallback, currentUser }) {
 
     //States are setted for future, currently not working
     const [itemPhoto, setItemPhoto] = useState(null);
+    const [altText, setAltText] = useState('');
     const [fields, setFields] = useState({
         category: '',
         weather: '',
@@ -53,7 +54,7 @@ export default function ItemForm({ addItemCallback, currentUser }) {
         const result = await uploadBytes(locationRef, itemPhoto) //get the reference of the result
         const url = await getDownloadURL(result.ref); //use the reference to get the physical url
 
-        addItemCallback(fields, url);
+        addItemCallback({ ...fields, altText }, url);
 
         navigateTo('/closet');
     };
@@ -76,6 +77,8 @@ export default function ItemForm({ addItemCallback, currentUser }) {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
             <label htmlFor="item-photo">Upload a photo of the item here:</label>
             <input type="file" id="item-photo" name="item-photo" accept="image/*" required onChange={e => setItemPhoto(e.target.files[0])} />
+            <label htmlFor="alt-text">Photo description (alt text):</label>
+            <input type="text" id="alt-text" name="alt-text" value={altText} onChange={e => setAltText(e.target.value)} required />
             {filterArray}
             <button type="submit">Add Item</button>
         </form>
