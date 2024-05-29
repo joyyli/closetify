@@ -55,7 +55,6 @@ export function CanvasFrame(props) {
                     </div>
                 </div>
                 <div className="card-content glass" ref={divRef}>
-                    <OutfitName />
                     {/* -32 because of padding size */}
                     <Canvas
                         selectedClothes={props.selectedClothes}
@@ -184,10 +183,4 @@ function OutfitDate(props) {
     const formattedDate = formatDate(today);
 
     return <h1>{formattedDate}</h1>;
-}
-
-function OutfitName(props) {
-    // TODO: allow user to change name of outfit
-    const name = "Untitled";
-    return <p>{name}</p>;
 }

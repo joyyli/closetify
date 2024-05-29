@@ -62,14 +62,18 @@ export default function Mycloset(props) {
 
     return (
         <div className="closet-intro">
-            <NavLink className="cta-button .buttons-desktop" to="/additem" role="button">
-                <img src="icon/camera.svg" alt="camera and plus sign" />
-                Add Item
+            {props.showButton &&
+                <NavLink className="cta-button .buttons-desktop" to="/additem" role="button">
+                    <img src="icon/camera.svg" alt="camera and plus sign" />
+                    Add Item
+                </NavLink>
+            }
 
-            </NavLink>
             <ClothesList
                 data={displayedData}
                 applyFilterCallback={applyFilter}
+                selectedClothes={props.selectedClothes}
+                setSelectedClothes={props.setSelectedClothes}
             />
             <div className="layer-icon">
                 <NavLink to="/additem"><img src="icon/Property 1=picture.svg" alt="Add item icon" /></NavLink>

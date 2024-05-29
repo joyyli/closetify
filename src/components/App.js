@@ -74,12 +74,12 @@ export default function App(props) {
             <Routes>
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/home" element={user ? <OutfitFeed outfits={outfitsData} currentUser={user} /> : <Navigate to="/signin" />} />
-                <Route path="/closet" element={user ? <MyClosetPage currentUser={user} /> : <Navigate to="/signin" />} />
+                <Route path="/closet" element={user ? <MyClosetPage currentUser={user} showButton={true}/> : <Navigate to="/signin" />} />
                 <Route path="/profile" element={user ? <ProfilePage currentUser={user} /> : <Navigate to="/signin" />} />
                 <Route path="/additem" element={user ? <AdditemPage currentUser={user} /> : <Navigate to="/signin" />}>
                     <Route path="form" element={<additemForm currentUser={user} />} />
                 </Route>
-                <Route path="/styleoutfit" element={user ? <StyleOutfitPage ClothesList={clothes} /> : <Navigate to="/signin" />} />
+                <Route path="/styleoutfit" element={user ? <StyleOutfitPage currentUser={user} /> : <Navigate to="/signin" />} />
                 <Route path="*" element={<Navigate to="/home" />} />
             </Routes>
 
