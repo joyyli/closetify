@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { auth } from '../firebase';
 
 const navItems = [
     { linkTo: "/home", text: "Home" },
@@ -7,13 +8,17 @@ const navItems = [
     { linkTo: "/profile", text: "Profile" }
 ];
 
-export default function NavBar(props) {
+export default function NavBar({ user }) {
     const [showMobileMenu, toggleMobile] = useState(false);
 
     const toggleMobileMenu = function (event) {
         event.preventDefault();
         toggleMobile(!showMobileMenu);
     }
+
+    const signOut = () => {
+        auth.signOut();
+    };
 
     return (
         <header role="banner">
@@ -22,9 +27,9 @@ export default function NavBar(props) {
                     <NavLink to="/home"><img src="icon/logo 2.svg" alt="closetify" /></NavLink>
                 </div>
                 <MobileNav toggleMobileMenu={toggleMobileMenu} />
-                <DesktopNav />
+                <DesktopNav user={user} signOut={signOut} />
             </div>
-            {showMobileMenu && <MobileDropdownMenu />}
+            {showMobileMenu && <MobileDropdownMenu user={user} signOut={signOut} />}
         </header>
     );
 }
@@ -32,7 +37,7 @@ export default function NavBar(props) {
 // DESKTOP NAV
 
 // TODO: change <a> to <link> after routing
-function DesktopNavItem({linkTo, text}) {
+function DesktopNavItem({ linkTo, text }) {
     return (
         <NavLink
             to={linkTo}
@@ -48,7 +53,7 @@ function DesktopNavItem({linkTo, text}) {
     );
 }
 
-function DesktopNav(props) {
+function DesktopNav({ user, signOut }) {
     const navArray = navItems.map((item) => (
         <DesktopNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
@@ -56,6 +61,11 @@ function DesktopNav(props) {
     return (
         <nav className="menu-list-desktop" role="navigation">
             {navArray}
+            {user ? (
+                <button onClick={signOut} className="nav-item">Sign out</button>
+            ) : (
+                <NavLink to="/signin" className="nav-item">Sign In</NavLink>
+            )}
         </nav>
     );
 }
@@ -64,9 +74,9 @@ function DesktopNav(props) {
 
 // TODO: fix dropdown behavior: why does it scroll down to hide the top bar? 
 // better to show top bar so it can be closed easily.
-function MobileNav(props) {
+function MobileNav({ toggleMobileMenu }) {
     return (
-        <div className="icon-group" onClick={props.toggleMobileMenu}>
+        <div className="icon-group" onClick={toggleMobileMenu}>
             <nav className="icon-menu" role="navigation">
                 <a href="#mobileNavDropdown">
                     <img className="icon-svg" src="icon/hamburger.svg" alt="menu" />
@@ -75,7 +85,6 @@ function MobileNav(props) {
         </div>
     );
 }
-
 
 function MobileNavItem({ linkTo, text }) {
     return (
@@ -93,13 +102,18 @@ function MobileNavItem({ linkTo, text }) {
     );
 }
 
-function MobileDropdownMenu(props) {
+function MobileDropdownMenu({ user, signOut }) {
     const navArray = navItems.map((item) => (
         <MobileNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
     return (
         <div id="mobileNavDropdown" className="dropdown-content">
             {navArray}
+            {user ? (
+                <button onClick={signOut} className="menu-list-mobile">Sign out</button>
+            ) : (
+                <NavLink to="/signin" className="menu-list-mobile">Sign In</NavLink>
+            )}
         </div>
     );
 }
