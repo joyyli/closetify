@@ -1,18 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Stage, Layer, Image, Group, Transformer } from 'react-konva';
+import React, { useState, useRef, useEffect, forwardRef } from 'react';
+import { Stage, Layer, Image, Transformer } from 'react-konva';
 import useImage from 'use-image';
 // temporary
 const tempImages = [{ src: 'img/black t-shirt.png', x: 10, y: 10, id: '1' },
-        { src: 'img/button-up.png', x: 10, y: 10, id: '2' },
-        { src: 'img/sweater.png', x: 10, y: 10, id: '3' }];
+{ src: 'img/button-up.png', x: 10, y: 10, id: '2' },
+{ src: 'img/sweater.png', x: 10, y: 10, id: '3' }];
 
 
 // canvas with information, button, etc.
 export function CanvasFrame(props) {
+    // modified from https://konvajs.org/docs/react/Canvas_Export.html
+    let stageRef = useRef(null);
+    const handleExport = (event) => {
+        if (stageRef.current) {
+            const uri = stageRef.current.toDataURL();
+            console.log(uri);
+            // TODO: upload to firebase
+            // + pull current date
+            // (1) move date formatting method into this function 
+            // (2) also save unformatted date as ID/key
+            // + name of outift needs form? or don't name outifts
 
-    // TODO: export canvas to image
-    const saveCanvas = () => {
-        console.log("save canvas");
+        } else {
+            console.error('Stage reference is not set');
+        }
     }
 
     // Measures size of an outer div so Canvas knows how big to be
@@ -35,36 +46,34 @@ export function CanvasFrame(props) {
     }, []);
 
     return (
-            <div className="col1">
-                <div className="card">
-                    <div className="card-header">
-                        <OutfitDate />
-                        <SaveButton onClick={saveCanvas}/>
-                    </div>
-                    <div className="card-content glass" ref={divRef}>
-                        <OutfitName/>
-                        {/* -32 because of padding size */}
-                        <Canvas 
-                        selectedClothes={props.selectedClothes}
-                        size={width - 32}/>
+        <div className="col1">
+            <div className="card">
+                <div className="card-header">
+                    <OutfitDate />
+                    <div className="cta-button" role="button" onClick={handleExport}>
+                        Save
                     </div>
                 </div>
+                <div className="card-content glass" ref={divRef}>
+                    <OutfitName />
+                    {/* -32 because of padding size */}
+                    <Canvas
+                        selectedClothes={props.selectedClothes}
+                        size={width - 32}
+                        ref={stageRef} />
+                </div>
             </div>
+        </div>
     );
 }
 
 // code modified from https://konvajs.org/docs/react/Transformer.html
-function Canvas(props) {
-    const selectedClothes = props.selectedClothes;
-    const [selectedId, selectImage] = useState(null);
-    const [images, setImages] = useState(selectedClothes);
+const Canvas = forwardRef((props, ref) => {
+    const { selectedClothes } = props;
+    const [selectedId, selectImage] = useState(null); // Add back the selectImage state
 
-    // TODO: fix, why is [Object object]?
-    // useEffect(() => {
-    //     setImages(selectedClothes);
-    // }, [selectedClothes]);
-
-    console.log("images: " + images);
+    console.log("selectedClothes: ");
+    console.log(selectedClothes);
 
     const checkDeselect = (e) => {
         const clickedOnEmpty = e.target === e.target.getStage();
@@ -73,7 +82,7 @@ function Canvas(props) {
         }
     };
 
-    const imagesArray = images.map((img, i) => {
+    const imagesArray = selectedClothes.map((img, i) => {
         return (
             <URLImage
                 key={img.id}
@@ -83,10 +92,7 @@ function Canvas(props) {
                     selectImage(img.id);
                 }}
                 onChange={(newAttrs) => {
-                    const updatedImages = images.map(image =>
-                        image.id === img.id ? { ...image, ...newAttrs } : image
-                    );
-                    setImages(updatedImages);
+                    // Implement onChange logic if needed
                 }}
             />
         );
@@ -98,14 +104,16 @@ function Canvas(props) {
                 width={props.size}
                 height={props.size}
                 onMouseDown={checkDeselect}
-                onTouchStart={checkDeselect} >
+                onTouchStart={checkDeselect}
+                ref={ref}>
                 <Layer>
                     {imagesArray}
                 </Layer>
             </Stage>
         </div>
     );
-}
+});
+
 
 // constructs an image that can be transformed in the canvas
 // code modified from https://konvajs.org/docs/react/Images.html
@@ -169,21 +177,16 @@ const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
     );
 };
 
-function SaveButton(props) {
-
-    // TODO: change routing so that database is updated with new image
-    return (
-        <div className="cta-button" role="button">
-            Save
-        </div>
-    );
-}
-
 function OutfitDate(props) {
-    // TODO: function to change data
-    // prop passed in from parent??
-    const date = "Tuesday, April 16";
-    return <h1>{date}</h1>;
+    const formatDate = (date) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    };
+
+    const today = new Date();
+    const formattedDate = formatDate(today);
+
+    return <h1>{formattedDate}</h1>;
 }
 
 function OutfitName(props) {
