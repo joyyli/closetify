@@ -54,6 +54,7 @@ export default function App(props) {
         const unsubscribe = auth.onAuthStateChanged(userAuth => {
             if (userAuth) {
                 setUser(userAuth);
+
             } else {
                 setUser(null);
                 navigate('/signin');
@@ -69,7 +70,7 @@ export default function App(props) {
 
     return (
         <div className="app">
-            <NavBar />
+            <NavBar user={user} />
             <Routes>
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/home" element={user ? <OutfitFeed outfits={outfitsData} currentUser={user} /> : <Navigate to="/signin" />} />

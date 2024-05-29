@@ -1,5 +1,10 @@
+import { auth } from '../../firebase';
+
 export default function ProfilePage(props) {
 
+    const signOut = () => {
+        auth.signOut();
+    };
 
     return (
         <div className="profile-section">
@@ -10,7 +15,7 @@ export default function ProfilePage(props) {
             </div>
             <div className="profile-actions">
                 <button className="edit-button">Edit</button>
-                <button className="logout-button">Log Out</button>
+                <button className="logout-button" onClick={signOut}>Log Out</button>
             </div>
         </div>
     );

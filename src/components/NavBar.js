@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 const navItems = [
     { linkTo: "/home", text: "Home" },
     { linkTo: "/closet", text: "My Closet" },
-    { linkTo: "/profile", text: "Profile" }
+    { linkTo: "/profile", text: "Profile" },
 ];
 
 export default function NavBar({ user }) {
@@ -53,7 +53,7 @@ function DesktopNavItem({ linkTo, text }) {
     );
 }
 
-function DesktopNav({ user, signOut }) {
+function DesktopNav({ user }) {
     const navArray = navItems.map((item) => (
         <DesktopNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
@@ -61,11 +61,8 @@ function DesktopNav({ user, signOut }) {
     return (
         <nav className="menu-list-desktop" role="navigation">
             {navArray}
-            {user ? (
-                <button onClick={signOut} className="nav-item">Sign out</button>
-            ) : (
-                <NavLink to="/signin" className="nav-item">Sign In</NavLink>
-            )}
+            {!user && <NavLink to="/signin" className="nav-item">Sign In</NavLink>
+            }
         </nav>
     );
 }
@@ -109,11 +106,7 @@ function MobileDropdownMenu({ user, signOut }) {
     return (
         <div id="mobileNavDropdown" className="dropdown-content">
             {navArray}
-            {user ? (
-                <button onClick={signOut} className="menu-list-mobile">Sign out</button>
-            ) : (
-                <NavLink to="/signin" className="menu-list-mobile">Sign In</NavLink>
-            )}
+            {!user && <NavLink to="/signin" className="nav-item">Sign In</NavLink>}
         </div>
     );
 }

@@ -1,6 +1,5 @@
 // import statements
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom';
 
 import ItemForm from './additemForm'
 
@@ -9,6 +8,8 @@ import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 
 
 export default function Additem(props) {
+
+    console.log(props.currentUser);
 
 
     //setted for callBack later
@@ -26,7 +27,7 @@ export default function Additem(props) {
             "userName": userName,
             "userImg": userImg,
             "timestamp": Date.now(),
-            "img" : url,
+            "img": url,
         }
 
         // const updateChatMessages = [...chatMessages, newMessage];
