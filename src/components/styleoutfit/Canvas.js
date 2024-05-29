@@ -72,9 +72,6 @@ const Canvas = forwardRef((props, ref) => {
     const { selectedClothes } = props;
     const [selectedId, selectImage] = useState(null); // Add back the selectImage state
 
-    console.log("selectedClothes: ");
-    console.log(selectedClothes);
-
     const checkDeselect = (e) => {
         const clickedOnEmpty = e.target === e.target.getStage();
         if (clickedOnEmpty) {

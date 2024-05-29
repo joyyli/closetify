@@ -20,19 +20,24 @@ function ClothesList(props) {
     const {setSelectedClothes, selectedClothes} = props;
 
     const clickHandler = (event) => {
-        // make this toggle a className to mark it as selected
-        // have it be able to remove from array as well..
-
         const imagePath = event.target.getAttribute('src');
-        const newKey = selectedClothes.length; // Generating a unique key based on the array length
-        
-        console.log("you clicked this path: " + imagePath);
-        setSelectedClothes([...selectedClothes, 
-            { src: imagePath, 
-              x: 10, 
-              y: 10, 
-              id: newKey }]);
+        const selectedImage = selectedClothes.find(img => img.src === imagePath);
+    
+        // Check if the clicked image is already selected
+        if (selectedImage) {
+            // If the image is already selected, remove it
+            setSelectedClothes(selectedClothes.filter(img => img.src !== imagePath));
+        } else {
+            // If the image is not selected, add it
+            setSelectedClothes([...selectedClothes, 
+                { src: imagePath, 
+                  x: 10, 
+                  y: 10, 
+                  id: imagePath }
+            ]);
+        }
     }
+    
     
 
     const clothesArray = props.data.map(obj => (
