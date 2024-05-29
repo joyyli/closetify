@@ -9,16 +9,6 @@ import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 
 export default function Additem(props) {
 
-    console.log(props.currentUser);
-
-
-    //setted for callBack later
-    const [img, setImg] = useState(null);
-    const [category, setCategory] = useState('');
-    const [weather, setWeather] = useState('');
-    const [occasion, setOccasion] = useState('');
-    const [Aesthetic, setAesthetic] = useState('');
-
     const addItem = (field, url) => {
         const { userId, userName, userImg } = props.currentUser;
         const newItemObj = {
@@ -30,12 +20,9 @@ export default function Additem(props) {
             "img": url,
         }
 
-        // const updateChatMessages = [...chatMessages, newMessage];
-        // setChatMessages(updateChatMessages); //update state and re-render
         const db = getDatabase();
         const closetRef = ref(db, "closet");
 
-        // firebaseSet(messageRef, newMessageObj);
         FirebasePush(closetRef, newItemObj);
 
     }

@@ -23,7 +23,7 @@ function SelectField({ id, label, value, onChange, options }) {
     );
 }
 
-export default function ItemForm({ addItemCallback, currentUser }) {
+export default function ItemForm({ addItemCallback }) {
 
     //States are setted for future, currently not working
     const [itemPhoto, setItemPhoto] = useState(null);

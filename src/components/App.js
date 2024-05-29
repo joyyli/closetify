@@ -53,7 +53,12 @@ export default function App(props) {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(userAuth => {
             if (userAuth) {
+                console.log(userAuth);
+                userAuth.userId = userAuth.uid;
+                userAuth.userName = userAuth.displayName;
+                userAuth.userImg = userAuth.photoURL || "img/pfp.jpg";
                 setUser(userAuth);
+
 
             } else {
                 setUser(null);
@@ -74,7 +79,7 @@ export default function App(props) {
             <Routes>
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/home" element={user ? <OutfitFeed outfits={outfitsData} currentUser={user} /> : <Navigate to="/signin" />} />
-                <Route path="/closet" element={user ? <MyClosetPage currentUser={user} showButton={true}/> : <Navigate to="/signin" />} />
+                <Route path="/closet" element={user ? <MyClosetPage currentUser={user} showButton={true} /> : <Navigate to="/signin" />} />
                 <Route path="/profile" element={user ? <ProfilePage currentUser={user} /> : <Navigate to="/signin" />} />
                 <Route path="/additem" element={user ? <AdditemPage currentUser={user} /> : <Navigate to="/signin" />}>
                     <Route path="form" element={<additemForm currentUser={user} />} />

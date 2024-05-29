@@ -6,12 +6,13 @@ export default function ProfilePage(props) {
         auth.signOut();
     };
 
+
     return (
         <div className="profile-section">
             <div className="profile-info">
-                <img src="img/pfp.jpg" alt="Profile Photo" className="profile-photo" />
-                <h1 className="profile-name">Your Name</h1>
-                <p className="profile-username">@username</p>
+                <img src={props.currentUser.photoURL} alt="Profile Photo" className="profile-photo" />
+                <h1 className="profile-name">{props.currentUser.displayName}</h1>
+                <p className="profile-username">{props.currentUser.email}</p>
             </div>
             <div className="profile-actions">
                 <button className="edit-button">Edit</button>
