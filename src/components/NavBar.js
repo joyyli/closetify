@@ -36,7 +36,6 @@ export default function NavBar({ user }) {
 
 // DESKTOP NAV
 
-// TODO: change <a> to <link> after routing
 function DesktopNavItem({ linkTo, text }) {
     return (
         <NavLink
@@ -106,7 +105,7 @@ function MobileDropdownMenu({ user, signOut }) {
     return (
         <div id="mobileNavDropdown" className="dropdown-content">
             {navArray}
-            {!user && <NavLink to="/signin" className="nav-item">Sign In</NavLink>}
+            {!user && <MobileNavItem linkTo="/signin" className="menu-list-mobile" text={"Sign In"} />}
         </div>
     );
 }

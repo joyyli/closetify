@@ -18,7 +18,8 @@ export default function OutfitFeed(props) {
             const objArray = objKeys.map((keyString) => {
                 outfitObj[keyString].key = keyString;
                 return outfitObj[keyString];
-            })
+            }).filter(item => item.userId == 'default' || item.userId == props.currentUser.userId);
+
 
             setFits(objArray); //update state and re-render
 

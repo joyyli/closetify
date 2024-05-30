@@ -36,15 +36,15 @@ export default function Mycloset(props) {
             const closetObj = snapshot.val();
             const objKeys = Object.keys(closetObj);
 
+
             const objArray = objKeys.map((keyString) => {
                 closetObj[keyString].key = keyString;
                 return closetObj[keyString];
-            })
+            }).filter(item => item.userId == 'default' || item.userId == currentUser.userId);
 
             setCloset(objArray); //update state and re-render
 
             function cleanup() {
-                console.log("Component is being removed")
                 offFunction();
             }
             return cleanup;
