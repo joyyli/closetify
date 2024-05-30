@@ -31,7 +31,10 @@ export default function OutfitFeed(props) {
         })
     }, []);
 
-    const outfitArray = fits.map((outfit) => (
+    // sort in ascending order
+    const sortedFits = fits.sort((a, b) => b.timestamp - a.timestamp);
+
+    const outfitArray = sortedFits.map((outfit) => (
         <OutfitCard
             key={outfit.timestamp}
             outfitDate={outfit.outfitDate}
