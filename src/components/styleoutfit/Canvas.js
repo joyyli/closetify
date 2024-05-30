@@ -34,11 +34,10 @@ export function CanvasFrame(props) {
                 const downloadURL = await getDownloadURL(imageRef);
 
                 // Save the object to Firebase Realtime Database
-                const { userId, userName, userImg } = props.currentUser;
+                const { userId, userName } = props.currentUser;
                 const newOutfitObj = {
                     "userId": userId,
                     "userName": userName,
-                    "userImg": userImg,
                     "timestamp": Date.now(),
                     "imageUrl": downloadURL,
                     "outfitDate": formattedDate

@@ -10,12 +10,11 @@ import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 export default function Additem(props) {
 
     const addItem = (field, url) => {
-        const { userId, userName, userImg } = props.currentUser;
+        const { userId, userName } = props.currentUser;
         const newItemObj = {
             ...field,
             "userId": userId,
             "userName": userName,
-            "userImg": userImg,
             "timestamp": Date.now(),
             "img": url,
         }
