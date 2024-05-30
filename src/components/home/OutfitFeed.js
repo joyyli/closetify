@@ -1,24 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import OutfitCard from './OutfitCard';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export default function OutfitFeed(props) {
-    const fits = props.outfits;
+    const [fits, setFits] = useState([]);
+
+    const db = getDatabase();
+    const outfitsRef = ref(db, "outfits");
+
+    useEffect(() => {
+
+        const offFunction = onValue(outfitsRef, function (snapshot) {
+            const outfitObj = snapshot.val();
+            const objKeys = Object.keys(outfitObj);
+
+            const objArray = objKeys.map((keyString) => {
+                outfitObj[keyString].key = keyString;
+                return outfitObj[keyString];
+            })
+
+            setFits(objArray); //update state and re-render
+
+            function cleanup() {
+                console.log("Component is being removed")
+                offFunction();
+            }
+            return cleanup;
+        })
+    }, []);
 
     const outfitArray = fits.map((outfit) => (
         <OutfitCard
-            key={outfit.id}
-            outfitName={outfit.outfitName}
+            key={outfit.timestamp}
             outfitDate={outfit.outfitDate}
             imageUrl={outfit.imageUrl}
         />
     ));
-
-/*     // button handler
-    const onAddOutfit = (event) => {
-        // TODO: navigate to StyleOutfitPage
-        console.log("nav to style outfit");
-    } */
 
     return (
         <main role="main">
