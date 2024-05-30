@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
-import { Stage, Layer, Image, Transformer } from 'react-konva';
+import { Stage, Layer, Image as KonvaImage, Transformer } from 'react-konva';
 import useImage from 'use-image';
 import { getStorage, ref as storageRef, getDownloadURL, uploadString } from "firebase/storage";
-import { getDatabase, ref as dbRef, push as FirebasePush  } from "firebase/database";
+import { getDatabase, ref as dbRef, push as FirebasePush } from "firebase/database";
 import { useNavigate } from 'react-router-dom';
 
 // canvas with information, button, etc.
@@ -28,10 +28,10 @@ export function CanvasFrame(props) {
             const imageRef = storageRef(getStorage(), `outfitsImg/${id}.png`);
             try {
                 // Upload the image to Firebase Storage
-                const uploadResult = await uploadString(imageRef, uri, 'data_url');
+                await uploadString(imageRef, uri, 'data_url');
 
                 // Get the download URL for the uploaded image
-                const downloadURL = await getDownloadURL(uploadResult.ref);
+                const downloadURL = await getDownloadURL(imageRef);
 
                 // Save the object to Firebase Realtime Database
                 const { userId, userName, userImg } = props.currentUser;
@@ -146,7 +146,7 @@ const Canvas = forwardRef((props, ref) => {
 // code modified from https://konvajs.org/docs/react/Images.html
 const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
     // loads image using useImage hook
-    const [image] = useImage(shapeProps.src);
+    const [image] = useImage(shapeProps.src, 'Anonymous');
 
     const imageRef = useRef();
     const trRef = useRef();
@@ -173,7 +173,7 @@ const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
 
     return (
         <>
-            <Image
+            <KonvaImage
                 x={shapeProps.x}
                 y={shapeProps.y}
                 image={image}
