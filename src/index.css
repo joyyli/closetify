@@ -56,14 +56,14 @@ footer p {
     align-items: center;
     justify-content: center;
     height: 80vh;
-  }
-  
-  .sign-in-page h1 {
+}
+
+.sign-in-page h1 {
     font-size: 2em;
     margin-bottom: 20px;
-  }
-  
-  .sign-in-page button {
+}
+
+.sign-in-page button {
     padding: 10px 20px;
     font-size: 1em;
     background-color: #4285f4;
@@ -71,11 +71,11 @@ footer p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .sign-in-page button:hover {
+}
+
+.sign-in-page button:hover {
     background-color: #357ae8;
-  }
+}
 
 /* DO NOT CHANGE UP HERE */
 /* CORE STYLEINGS */
@@ -354,6 +354,12 @@ footer p {
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-photo {

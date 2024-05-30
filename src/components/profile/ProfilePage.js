@@ -15,7 +15,6 @@ export default function ProfilePage(props) {
                 <p className="profile-username">{props.currentUser.email}</p>
             </div>
             <div className="profile-actions">
-                <button className="edit-button">Edit</button>
                 <button className="logout-button" onClick={signOut}>Log Out</button>
             </div>
         </div>

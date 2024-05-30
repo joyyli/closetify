@@ -24,7 +24,6 @@ export default function OutfitFeed(props) {
             setFits(objArray); //update state and re-render
 
             function cleanup() {
-                console.log("Component is being removed")
                 offFunction();
             }
             return cleanup;
