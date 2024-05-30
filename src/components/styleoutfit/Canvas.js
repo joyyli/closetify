@@ -1,26 +1,57 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import { Stage, Layer, Image, Transformer } from 'react-konva';
 import useImage from 'use-image';
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-
+import { getStorage, ref as storageRef, getDownloadURL, uploadString } from "firebase/storage";
+import { getDatabase, ref as dbRef, push as FirebasePush  } from "firebase/database";
+import { useNavigate } from 'react-router-dom';
 
 // canvas with information, button, etc.
 export function CanvasFrame(props) {
-    // modified from https://konvajs.org/docs/react/Canvas_Export.html
+    const navigateTo = useNavigate(); // navigation hook
+
+    // get current date and format it
+    const formatDate = (date) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    };
+
+    const today = new Date();
+    const formattedDate = formatDate(today);
+
     let stageRef = useRef(null);
     const handleExport = async (event) => {
         event.preventDefault();
         if (stageRef.current) {
-            // const locationRef = ref(getStorage(), `outfitsImg/${Date.now()}/$`);
-
             const uri = stageRef.current.toDataURL();
-            console.log(uri);
-            // TODO: upload to firebase
-            // + pull current date
-            // (1) move date formatting method into this function 
-            // (2) also save unformatted date as ID/key
-            // + name of outift needs form? or don't name outifts
+            const id = today.getTime()
 
+            const imageRef = storageRef(getStorage(), `outfitsImg/${id}.png`);
+            try {
+                // Upload the image to Firebase Storage
+                const uploadResult = await uploadString(imageRef, uri, 'data_url');
+
+                // Get the download URL for the uploaded image
+                const downloadURL = await getDownloadURL(uploadResult.ref);
+
+                // Save the object to Firebase Realtime Database
+                const { userId, userName, userImg } = props.currentUser;
+                const newOutfitObj = {
+                    "userId": userId,
+                    "userName": userName,
+                    "userImg": userImg,
+                    "timestamp": Date.now(),
+                    "imageUrl": downloadURL,
+                    "outfitDate": formattedDate
+                }
+
+                // Reference for the object in Firebase Realtime Database
+                const outfitsRef = dbRef(getDatabase(), `outfits`);
+                FirebasePush(outfitsRef, newOutfitObj);
+
+                navigateTo('/home');
+            } catch (error) {
+                console.error('Error uploading image or saving data:', error);
+            }
         } else {
             console.error('Stage reference is not set');
         }
@@ -49,7 +80,7 @@ export function CanvasFrame(props) {
         <div className="col1">
             <div className="card">
                 <div className="card-header">
-                    <OutfitDate />
+                    <h1>{formattedDate}</h1>
                     <div className="cta-button" role="button" onClick={handleExport}>
                         Save
                     </div>
@@ -173,14 +204,3 @@ const URLImage = ({ shapeProps, isSelected, onSelect, onChange }) => {
     );
 };
 
-function OutfitDate(props) {
-    const formatDate = (date) => {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-    };
-
-    const today = new Date();
-    const formattedDate = formatDate(today);
-
-    return <h1>{formattedDate}</h1>;
-}

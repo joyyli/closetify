@@ -7,9 +7,12 @@ export default function StyleOutfit(props) {
 
     return (
         <div className="style-content">
-            <CanvasFrame selectedClothes={selectedClothes}/>
+            <CanvasFrame 
+            selectedClothes={selectedClothes}
+            currentUser={props.currentUser}
+            />
             <div className="col2">
-                <Mycloset curentuser={props.currentUser} 
+                <Mycloset currentUser={props.currentUser} 
                 selectedClothes={selectedClothes}
                 setSelectedClothes={setSelectedClothes}
                 showButton={false}/>
