@@ -1,13 +1,13 @@
 // import statements
-import { useState } from 'react'
-
 import ItemForm from './additemForm'
 
 import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 
 
 
+
 export default function Additem(props) {
+
 
     const addItem = (field, url) => {
         const { userId, userName } = props.currentUser;
@@ -22,7 +22,10 @@ export default function Additem(props) {
         const db = getDatabase();
         const closetRef = ref(db, "closet");
 
-        FirebasePush(closetRef, newItemObj);
+        FirebasePush(closetRef, newItemObj)
+            .catch((error) => {
+                alert("Error : " + error.message);
+            });
 
     }
 
