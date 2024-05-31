@@ -4,6 +4,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 // authentication
 import { auth } from '../firebase.js';
 import SignInPage from './SignInPage';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 // data
 import outfitsData from '../data/outfits.json';
@@ -49,50 +50,45 @@ export default function App(props) {
     const [user, setUser] = useState(null);
     const [outfitList, setOutfitList] = useState([]);
     const navigate = useNavigate();
+    const auth = getAuth();
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(userAuth => {
-            if (userAuth) {
-                console.log(userAuth);
-                userAuth.userId = userAuth.uid;
-                userAuth.userName = userAuth.displayName;
-                userAuth.userImg = userAuth.photoURL || "img/pfp.jpg";
-                setUser(userAuth);
-
-
-            } else {
-                setUser(null);
-                navigate('/signin');
-            }
+        const unsubscribe = onAuthStateChanged(auth, userAuth => {
+          if (userAuth) {
+            setUser(userAuth);
+          } else {
+            setUser(null);
+            navigate('/signin');
+          }
         });
-
+    
         return () => unsubscribe();
-    }, [navigate]);
-
-    const addNewOutfit = (newOutfit) => {
+      }, [auth, navigate]);
+    
+      const addNewOutfit = (newOutfit) => {
         setOutfitList([...outfitList, newOutfit]);
-    };
+      };
 
-    return (
+      return (
         <div className="app">
-            <NavBar user={user} />
-            <Routes>
-                <Route path="/signin" element={<SignInPage />} />
-                <Route path="/home" element={user ? <OutfitFeed outfits={outfitsData} currentUser={user} /> : <Navigate to="/signin" />} />
-                <Route path="/closet" element={user ? <MyClosetPage currentUser={user} showButton={true} /> : <Navigate to="/signin" />} />
-                <Route path="/profile" element={user ? <ProfilePage currentUser={user} /> : <Navigate to="/signin" />} />
-                <Route path="/additem" element={user ? <AdditemPage currentUser={user} /> : <Navigate to="/signin" />}>
-                    <Route path="form" element={<additemForm currentUser={user} />} />
-                </Route>
-                <Route path="/styleoutfit" element={user ? <StyleOutfitPage currentUser={user} /> : <Navigate to="/signin" />} />
-                <Route path="*" element={<Navigate to="/home" />} />
-            </Routes>
-
-            <footer role="contentinfo">
-                <p>
-                    &copy; 2024 Closetify; All rights reserved.
-                </p>
-            </footer>
+          <NavBar user={user} />
+          <Routes>
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/home" element={user ? <OutfitFeed outfits={outfitsData} currentUser={user} /> : <Navigate to="/signin" />} />
+            <Route path="/closet" element={user ? <MyClosetPage currentUser={user} /> : <Navigate to="/signin" />} />
+            <Route path="/profile" element={user ? <ProfilePage currentUser={user} /> : <Navigate to="/signin" />} />
+            <Route path="/additem" element={user ? <AdditemPage currentUser={user} /> : <Navigate to="/signin" />}>
+              <Route path="form" element={<additemForm currentUser={user} />} />
+            </Route>
+            <Route path="/styleoutfit" element={user ? <StyleOutfitPage ClothesList={clothes} /> : <Navigate to="/signin" />} />
+            <Route path="*" element={<Navigate to="/home" />} />
+          </Routes>
+    
+          <footer role="contentinfo">
+            <p>
+              &copy; 2024 Closetify; All rights reserved.
+            </p>
+          </footer>
         </div>
-    );
-}
+      );
+    }

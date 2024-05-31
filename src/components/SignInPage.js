@@ -1,11 +1,44 @@
 import React from 'react';
-import { auth, provider } from '../firebase';
-import { signInWithPopup } from "firebase/auth";
+//import { auth, provider } from '../firebase';
+//import { signInWithPopup } from "firebase/auth";
 import '../index.css';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
+import { getAuth, GoogleAuthProvider, EmailAuthProvider } from 'firebase/auth';
+import StyledFirebaseAuth from './StyledFirebaseAuth';
+
+const firebaseUIConfig = {
+  signInOptions: [
+    GoogleAuthProvider.PROVIDER_ID,
+    {
+      provider: EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: true,
+    },
+  ],
+  signInFlow: 'popup',
+  credentialHelper: 'none',
+  callbacks: {
+    signInSuccessWithAuthResult: () => {
+      return false; // Don't redirect after authentication
+    },
+  },
+};
 
 const SignInPage = () => {
+  const auth = getAuth(); // Access the authenticator
+
+  return (
+    <div className="sign-in-page">
+      <h1>Welcome to Closetify</h1>
+      <p>Please sign-in:</p>
+      <StyledFirebaseAuth uiConfig={firebaseUIConfig} firebaseAuth={auth} />
+    </div>
+  );
+};
+
+export default SignInPage;
+
+/*const SignInPage = () => {
   const navigate = useNavigate();
 
   const signInWithGoogle = () => {
@@ -27,4 +60,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignInPage;*/
