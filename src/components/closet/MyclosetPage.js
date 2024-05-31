@@ -1,7 +1,6 @@
 // import statements
 import { useState, useEffect } from 'react'
 import { ClothesList } from './ClothesList'
-import Additem from '../additem/AdditemPage'
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
