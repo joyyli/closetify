@@ -1,17 +1,15 @@
 import React from 'react';
-//import { auth, provider } from '../firebase';
-//import { signInWithPopup } from "firebase/auth";
-import '../index.css';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { auth, googleProvider, emailProvider } from '../firebase.js';
 
-import { getAuth, GoogleAuthProvider, EmailAuthProvider } from 'firebase/auth';
+//import { getAuth, GoogleAuthProvider, EmailAuthProvider } from 'firebase/auth';
 import StyledFirebaseAuth from './StyledFirebaseAuth';
 
 const firebaseUIConfig = {
   signInOptions: [
-    GoogleAuthProvider.PROVIDER_ID,
+    googleProvider.providerId,
     {
-      provider: EmailAuthProvider.PROVIDER_ID,
+      provider: emailProvider.providerId, //EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: true,
     },
   ],
@@ -25,7 +23,14 @@ const firebaseUIConfig = {
 };
 
 const SignInPage = () => {
-  const auth = getAuth(); // Access the authenticator
+  //const auth = getAuth(); // Access the authenticator
+
+  const navigate = useNavigate();
+
+  firebaseUIConfig.callbacks.signInSuccessWithAuthResult = () => {
+    navigate("/home");
+  };
+
 
   return (
     <div className="sign-in-page">
@@ -37,27 +42,3 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
-
-/*const SignInPage = () => {
-  const navigate = useNavigate();
-
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then(result => {
-        console.log(result);
-        navigate("/home");
-      })
-      .catch(error => {
-        console.error("Error signing in with Google: ", error);
-      });
-  };
-
-  return (
-    <div className="sign-in-page">
-      <h1>Welcome to Closetify</h1>
-      <button onClick={signInWithGoogle}>Sign in with Google</button>
-    </div>
-  );
-};
-
-export default SignInPage;*/

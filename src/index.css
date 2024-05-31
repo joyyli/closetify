@@ -63,19 +63,7 @@ footer p {
     margin-bottom: 20px;
 }
 
-.sign-in-page button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.sign-in-page button:hover {
-    background-color: #357ae8;
-}
 
 /* DO NOT CHANGE UP HERE */
 /* CORE STYLEINGS */

@@ -1,11 +1,10 @@
+import React from 'react';
 import { auth } from '../../firebase';
 
 export default function ProfilePage(props) {
-
     const signOut = () => {
-        auth.signOut();
+        auth.signOut()
     };
-
 
     return (
         <div className="profile-section">
