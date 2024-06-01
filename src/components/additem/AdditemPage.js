@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 
 export default function Additem(props) {
-    const [alertMessage, setAlertMessage] = useState("Sample error message");
+    const [alertMessage, setAlertMessage] = useState(null);
 
     const addItem = (field, url) => {
         const { userId, userName } = props.currentUser;

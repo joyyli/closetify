@@ -47,11 +47,11 @@ export function CanvasFrame(props) {
 
             // Reference for the object in Firebase Realtime Database
             const outfitsRef = dbRef(getDatabase(), `outfits`);
-            FirebasePush(outfitsRef, newOutfitObj)
+            FirebasePush("outfitsRef", newOutfitObj)
 
             navigateTo('/home');
         } catch (error) {
-            setAlertMessage("Error : " + error.message);
+            setAlertMessage("Error: " + error.message);
         }
     }
 
