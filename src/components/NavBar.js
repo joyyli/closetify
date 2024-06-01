@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { auth } from '../firebase';
 
 const navItems = [
@@ -10,11 +10,16 @@ const navItems = [
 
 export default function NavBar({ user }) {
     const [showMobileMenu, toggleMobile] = useState(false);
+    const location = useLocation()
 
     const toggleMobileMenu = function (event) {
         event.preventDefault();
         toggleMobile(!showMobileMenu);
     }
+
+    useEffect(() => {
+        toggleMobile(false);
+    }, [location]);
 
     const signOut = () => {
         auth.signOut();
@@ -98,7 +103,7 @@ function MobileNavItem({ linkTo, text }) {
     );
 }
 
-function MobileDropdownMenu({ user, signOut }) {
+function MobileDropdownMenu({ user }) {
     const navArray = navItems.map((item) => (
         <MobileNavItem key={item.text} linkTo={item.linkTo} text={item.text} />
     ));
