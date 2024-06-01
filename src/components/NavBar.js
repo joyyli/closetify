@@ -64,9 +64,7 @@ function DesktopNav({ user }) {
 
     return (
         <nav className="menu-list-desktop" role="navigation">
-            {navArray}
-            {!user && <NavLink to="/signin" className="nav-item">Sign In</NavLink>
-            }
+            {user && navArray}
         </nav>
     );
 }
