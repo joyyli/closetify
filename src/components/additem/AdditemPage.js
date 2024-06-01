@@ -1,13 +1,10 @@
 // import statements
 import ItemForm from './additemForm'
-
+import { useState } from 'react';
 import { getDatabase, ref, push as FirebasePush } from 'firebase/database';
 
-
-
-
 export default function Additem(props) {
-
+    const [alertMessage, setAlertMessage] = useState(null);
 
     const addItem = (field, url) => {
         const { userId, userName } = props.currentUser;
@@ -24,16 +21,20 @@ export default function Additem(props) {
 
         FirebasePush(closetRef, newItemObj)
             .catch((error) => {
-                alert("Error : " + error.message);
+                setAlertMessage("Error : " + error.message);
             });
 
     }
 
-
-
     return (
         <div className="add-item-container">
             <h1>Add New Item to Your Closet</h1>
+            {alertMessage &&
+                <div className="alert">
+                    <span className="closebtn" onClick={() => setAlertMessage(null)}>&times;</span>
+                    {alertMessage}
+                </div>
+            }
             <div className="add-item-form">
                 <ItemForm addItemCallback={addItem} />
             </div>

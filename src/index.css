@@ -523,6 +523,30 @@ select {
 
 }
 
+/* alert box */
+ .alert {
+    padding: 20px;
+    background-color: #c7352b; /* Red */
+    color: white;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  } 
+
 @media (min-width: 598px) {
 
     /* clothing items */

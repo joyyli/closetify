@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 // canvas with information, button, etc.
 export function CanvasFrame(props) {
+    // error catch
+    const [alertMessage, setAlertMessage] = useState(null);
+
     const navigateTo = useNavigate(); // navigation hook
 
     // get current date and format it
@@ -21,38 +24,34 @@ export function CanvasFrame(props) {
     let stageRef = useRef(null);
     const handleExport = async (event) => {
         event.preventDefault();
-        if (stageRef.current) {
-            const uri = stageRef.current.toDataURL();
-            const id = today.getTime()
+        const uri = stageRef.current.toDataURL();
+        const id = today.getTime()
 
-            const imageRef = storageRef(getStorage(), `outfitsImg/${id}.png`);
-            try {
-                // Upload the image to Firebase Storage
-                await uploadString(imageRef, uri, 'data_url');
+        const imageRef = storageRef(getStorage(), `outfitsImg/${id}.png`);
+        try {
+            // Upload the image to Firebase Storage
+            await uploadString(imageRef, uri, 'data_url');
 
-                // Get the download URL for the uploaded image
-                const downloadURL = await getDownloadURL(imageRef);
+            // Get the download URL for the uploaded image
+            const downloadURL = await getDownloadURL(imageRef);
 
-                // Save the object to Firebase Realtime Database
-                const { userId, userName } = props.currentUser;
-                const newOutfitObj = {
-                    "userId": userId,
-                    "userName": userName,
-                    "timestamp": Date.now(),
-                    "imageUrl": downloadURL,
-                    "outfitDate": formattedDate
-                }
-
-                // Reference for the object in Firebase Realtime Database
-                const outfitsRef = dbRef(getDatabase(), `outfits`);
-                FirebasePush(outfitsRef, newOutfitObj);
-
-                navigateTo('/home');
-            } catch (error) {
-                console.error('Error uploading image or saving data:', error);
+            // Save the object to Firebase Realtime Database
+            const { userId, userName } = props.currentUser;
+            const newOutfitObj = {
+                "userId": userId,
+                "userName": userName,
+                "timestamp": Date.now(),
+                "imageUrl": downloadURL,
+                "outfitDate": formattedDate
             }
-        } else {
-            console.error('Stage reference is not set');
+
+            // Reference for the object in Firebase Realtime Database
+            const outfitsRef = dbRef(getDatabase(), `outfits`);
+            FirebasePush(outfitsRef, newOutfitObj)
+
+            navigateTo('/home');
+        } catch (error) {
+            setAlertMessage("Error : " + error.message);
         }
     }
 
@@ -78,6 +77,12 @@ export function CanvasFrame(props) {
     return (
         <div className="col1">
             <div className="card">
+                {alertMessage &&
+                    <div className="alert">
+                        <span className="closebtn" onClick={() => setAlertMessage(null)}>&times;</span>
+                        {alertMessage}
+                    </div>
+                }
                 <div className="card-header">
                     <h1>{formattedDate}</h1>
                     <div className="cta-button" role="button" onClick={handleExport}>
