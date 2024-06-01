@@ -12,7 +12,7 @@ const firebaseUIConfig = {
       requireDisplayName: true,
     },
   ],
-  signInFlow: 'popup',
+  signInFlow: 'redirect',
   credentialHelper: 'none',
   callbacks: {
     signInSuccessWithAuthResult: () => {
