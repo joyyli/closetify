@@ -29,6 +29,7 @@ export default function Additem(props) {
     return (
         <div className="add-item-container">
             <h1>Add New Item to Your Closet</h1>
+            <p>For best results, please upload a .png with a transparent background! You may want to use a <a href="https://www.adobe.com/express/feature/image/remove-background" target="_blank">image background remover.</a></p>
             {alertMessage &&
                 <div className="alert">
                     <span className="closebtn" onClick={() => setAlertMessage(null)}>&times;</span>

@@ -397,6 +397,10 @@ footer p {
     padding: 20px;
 }
 
+.add-item-container p {
+    color: var(--secondary);
+}
+
 .add-item-form {
     background-color: #f9f9f9;
     padding: 20px;
