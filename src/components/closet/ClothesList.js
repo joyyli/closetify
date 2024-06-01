@@ -55,7 +55,7 @@ function ClothesList(props) {
         .flatMap(obj => obj.options);
 
     const aestheticOptions = options.filterOptions
-        .filter(obj => obj.id === "aesthetics")
+        .filter(obj => obj.id === "aesthetic")
         .flatMap(obj => obj.options);
 
     const categoryOptions = options.filterOptions

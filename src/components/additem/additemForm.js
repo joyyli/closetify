@@ -32,7 +32,7 @@ export default function ItemForm({ addItemCallback }) {
         category: '',
         weather: '',
         occasion: '',
-        aesthetics: '',
+        aesthetic: '',
     });
 
     //EvenListenrs and Callbacks are setted for future, currently not working
