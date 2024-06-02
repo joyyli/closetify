@@ -21,12 +21,12 @@ export default function App(props) {
   const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, userAuth => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
       if (userAuth) {
-        setUser(userAuth);
         userAuth.userId = userAuth.uid;
         userAuth.userName = userAuth.displayName;
         userAuth.userImg = userAuth.photoURL;
+        setUser(userAuth);
       } else {
         setUser(null);
         navigate('/signin');

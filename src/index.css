@@ -63,6 +63,20 @@ footer p {
     margin-bottom: 20px;
 }
 
+.sign-in-page button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sign-in-page button:hover {
+    background-color: #357ae8;
+}
+
 
 
 /* DO NOT CHANGE UP HERE */
@@ -528,15 +542,16 @@ select {
 }
 
 /* alert box */
- .alert {
+.alert {
     padding: 20px;
-    background-color: #c7352b; /* Red */
+    background-color: #c7352b;
+    /* Red */
     color: white;
     margin-bottom: 16px;
     border-radius: 8px;
-  }
-  
-  .closebtn {
+}
+
+.closebtn {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -545,16 +560,16 @@ select {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  .closebtn:hover {
-    color: black;
-  } 
+}
 
-  .alert.tutorial {
+.closebtn:hover {
+    color: black;
+}
+
+.alert.tutorial {
     background-color: var(--deactivated);
     color: var(--primary);
-  }
+}
 
 @media (min-width: 598px) {
 

@@ -1,6 +1,5 @@
-// firebase.js
-import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, EmailAuthProvider } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD9qj2IMDi-ZiHvQ3zDFeIfLdsOlqBcrzE",
@@ -17,7 +16,6 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
-const emailProvider = new EmailAuthProvider();
+const provider = new GoogleAuthProvider();
 
-export { auth, googleProvider, emailProvider };
+export { auth, provider };

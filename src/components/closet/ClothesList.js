@@ -1,4 +1,4 @@
-import React, { act, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import options from '../../data/options.json'
 export { ClothesList };
 
@@ -17,12 +17,12 @@ function ClothesList(props) {
         props.applyFilterCallback(newCategory, newWeather, newOccasion, newAesthetic);
     };
 
-    const {setSelectedClothes, selectedClothes} = props;
+    const { setSelectedClothes, selectedClothes } = props;
 
     const clickHandler = (event) => {
         const imagePath = event.target.getAttribute('src');
         const selectedImage = selectedClothes.find(img => img.src === imagePath);
-    
+
         // Check if the clicked image is already selected
         if (selectedImage) {
             // If the image is already selected, remove it
@@ -30,9 +30,10 @@ function ClothesList(props) {
         } else {
             // If the image is not selected, add it
             setSelectedClothes([...selectedClothes,
-                { src: imagePath, 
-                  x: 10, 
-                  y: 10, 
+            {
+                src: imagePath,
+                x: 10,
+                y: 10,
                 id: imagePath
             }
             ]);

@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
-
 function SelectField({ id, label, value, onChange, options }) {
 
     const optionList = options.map(option => (

@@ -1,38 +1,36 @@
 import React from 'react';
+import { useState } from 'react';
+import { auth, provider } from '../firebase';
+import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { auth, googleProvider, emailProvider } from '../firebase.js';
 
-import StyledFirebaseAuth from './StyledFirebaseAuth';
-
-const firebaseUIConfig = {
-  signInOptions: [
-    googleProvider.providerId,
-    {
-      provider: emailProvider.providerId,
-      requireDisplayName: true,
-    },
-  ],
-  signInFlow: 'redirect',
-  credentialHelper: 'none',
-  callbacks: {
-    signInSuccessWithAuthResult: () => {
-      return false; // Don't redirect after authentication
-    },
-  },
-};
 
 const SignInPage = () => {
+  const [alertMessage, setAlertMessage] = useState(null);
+
   const navigate = useNavigate();
 
-  firebaseUIConfig.callbacks.signInSuccessWithAuthResult = () => {
-    navigate("/home");
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        navigate('/home');
+      })
+      .catch(error => {
+        setAlertMessage("Error : " + error.message);
+      });
   };
+
 
   return (
     <div className="sign-in-page">
       <h1>Welcome to Closetify</h1>
-      <p>Please sign-in:</p>
-      <StyledFirebaseAuth uiConfig={firebaseUIConfig} firebaseAuth={auth} />
+      <button onClick={signInWithGoogle}>Sign in with Google</button>
+      {alertMessage &&
+        <div className="alert">
+          <span className="closebtn" onClick={() => setAlertMessage(null)}>&times;</span>
+          {alertMessage}
+        </div>
+      }
     </div>
   );
 };
