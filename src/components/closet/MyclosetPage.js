@@ -15,13 +15,11 @@ export default function Mycloset(props) {
     const [category, setCategory] = useState('');
     const [weather, setWeather] = useState('');
     const [occasion, setOccasion] = useState('');
-    const [aesthetic, setAesthetic] = useState('');
 
-    const applyFilter = (newCategory, newWeather, newOccasion, newAesthetic) => {
+    const applyFilter = (newCategory, newWeather, newOccasion) => {
         setCategory(newCategory);
         setWeather(newWeather);
         setOccasion(newOccasion);
-        setAesthetic(newAesthetic);
     };
 
     const currentUser = props.currentUser;
@@ -55,8 +53,7 @@ export default function Mycloset(props) {
     const displayedData = closet.filter(item =>
         (category === '' || item.category === category) &&
         (weather === '' || item.weather === weather) &&
-        (occasion === '' || item.occasion === occasion) &&
-        (aesthetic === '' || item.Aesthetic === aesthetic)
+        (occasion === '' || item.occasion === occasion)
     );
 
     return (

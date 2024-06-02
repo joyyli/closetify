@@ -7,14 +7,12 @@ function ClothesList(props) {
     const [category, setCategory] = useState('');
     const [weather, setWeather] = useState('');
     const [occasion, setOccasion] = useState('');
-    const [aesthetic, setAesthetic] = useState('');
 
-    const handleFilterChange = (newCategory, newWeather, newOccasion, newAesthetic) => {
+    const handleFilterChange = (newCategory, newWeather, newOccasion) => {
         setCategory(newCategory);
         setWeather(newWeather);
         setOccasion(newOccasion);
-        setAesthetic(newAesthetic);
-        props.applyFilterCallback(newCategory, newWeather, newOccasion, newAesthetic);
+        props.applyFilterCallback(newCategory, newWeather, newOccasion);
     };
 
     const { setSelectedClothes, selectedClothes } = props;
@@ -56,10 +54,6 @@ function ClothesList(props) {
         .filter(obj => obj.id === "occasion")
         .flatMap(obj => obj.options);
 
-    const aestheticOptions = options.filterOptions
-        .filter(obj => obj.id === "aesthetic")
-        .flatMap(obj => obj.options);
-
     const categoryOptions = options.filterOptions
         .filter(obj => obj.id === "category")
         .flatMap(obj => obj.options);
@@ -70,7 +64,7 @@ function ClothesList(props) {
             active={category == option.value}
             label={option.label}
             name={option.value}
-            onClick={() => handleFilterChange(option.value, weather, occasion, aesthetic)}
+            onClick={() => handleFilterChange(option.value, weather, occasion)}
         />
     ))
 
@@ -85,23 +79,17 @@ function ClothesList(props) {
                 id="weather"
                 name="Weather"
                 value={weather}
-                onChange={e => handleFilterChange(category, e.target.value, occasion, aesthetic)}
+                onChange={e => handleFilterChange(category, e.target.value, occasion)}
                 options={weatherOptions}
             />
             <FilterPill
                 id="occasion"
                 name="Occasion"
                 value={occasion}
-                onChange={e => handleFilterChange(category, weather, e.target.value, aesthetic)}
+                onChange={e => handleFilterChange(category, weather, e.target.value, occasion)}
                 options={occasionOptions}
             />
-            <FilterPill
-                id="aesthetic"
-                name="Aesthetic"
-                value={aesthetic}
-                onChange={e => handleFilterChange(category, weather, occasion, e.target.value)}
-                options={aestheticOptions}
-            />
+
         </div>
 
         <div className='closet'>

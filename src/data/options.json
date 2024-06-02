@@ -73,28 +73,6 @@
                     "label": "Exercise"
                 }
             ]
-        },
-        {
-            "id": "aesthetics",
-            "label": "Aesthetics",
-            "options": [
-                {
-                    "value": "y2k",
-                    "label": "Y2K"
-                },
-                {
-                    "value": "preppy",
-                    "label": "Preppy"
-                },
-                {
-                    "value": "balletcore",
-                    "label": "Balletcore"
-                },
-                {
-                    "value": "simple",
-                    "label": "Simple"
-                }
-            ]
         }
     ]
 }
