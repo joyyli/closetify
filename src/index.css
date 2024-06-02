@@ -553,7 +553,7 @@ select {
 
   .alert.tutorial {
     background-color: var(--deactivated);
-    color: var(--secondary);
+    color: var(--primary);
   }
 
 @media (min-width: 598px) {

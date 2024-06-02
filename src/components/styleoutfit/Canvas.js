@@ -10,6 +10,7 @@ export function CanvasFrame(props) {
     // error catch
     const [alertMessage, setAlertMessage] = useState(null);
     const [displayTutorial, setDisplayTutorial] = useState(true);
+    const [displayTutorial2, setDisplayTutorial2] = useState(true);
 
     const navigateTo = useNavigate(); // navigation hook
 
@@ -81,9 +82,15 @@ export function CanvasFrame(props) {
                 {displayTutorial &&
                     <div className="alert tutorial">
                         <span className="closebtn" onClick={() => setDisplayTutorial(null)}>&times;</span>
-                        Click a clothing item to toggle it to the canvas. You can remove it the same way.  
+                        Click a clothing item to toggle it to the canvas. You can remove it the same way.
                         <br />
                         <NavLink to="/additem">Need to add more clothes?</NavLink>
+                    </div>
+                }
+                {displayTutorial2 &&
+                    <div className="alert tutorial">
+                        <span className="closebtn" onClick={() => setDisplayTutorial2(null)}>&times;</span>
+                        Make sure you don't have any items selected when you save!
                     </div>
                 }
                 {alertMessage &&
