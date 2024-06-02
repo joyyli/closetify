@@ -551,6 +551,11 @@ select {
     color: black;
   } 
 
+  .alert.tutorial {
+    background-color: var(--deactivated);
+    color: var(--secondary);
+  }
+
 @media (min-width: 598px) {
 
     /* clothing items */

@@ -3,12 +3,13 @@ import { Stage, Layer, Image as KonvaImage, Transformer } from 'react-konva';
 import useImage from 'use-image';
 import { getStorage, ref as storageRef, getDownloadURL, uploadString } from "firebase/storage";
 import { getDatabase, ref as dbRef, push as FirebasePush } from "firebase/database";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 // canvas with information, button, etc.
 export function CanvasFrame(props) {
     // error catch
     const [alertMessage, setAlertMessage] = useState(null);
+    const [displayTutorial, setDisplayTutorial] = useState(true);
 
     const navigateTo = useNavigate(); // navigation hook
 
@@ -77,6 +78,14 @@ export function CanvasFrame(props) {
     return (
         <div className="col1">
             <div className="card">
+                {displayTutorial &&
+                    <div className="alert tutorial">
+                        <span className="closebtn" onClick={() => setDisplayTutorial(null)}>&times;</span>
+                        Click a clothing item to toggle it to the canvas. You can remove it the same way.  
+                        <br />
+                        <NavLink to="/additem">Need to add more clothes?</NavLink>
+                    </div>
+                }
                 {alertMessage &&
                     <div className="alert">
                         <span className="closebtn" onClick={() => setAlertMessage(null)}>&times;</span>
