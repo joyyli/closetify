@@ -26,7 +26,7 @@ export default function App(props) {
         setUser(userAuth);
         userAuth.userId = userAuth.uid;
         userAuth.userName = userAuth.displayName;
-        userAuth.userImg = userAuth.photoURL || "img/pfp.jpg";
+        userAuth.userImg = userAuth.photoURL;
       } else {
         setUser(null);
         navigate('/signin');

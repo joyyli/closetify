@@ -29,20 +29,21 @@ function ClothesList(props) {
             setSelectedClothes(selectedClothes.filter(img => img.src !== imagePath));
         } else {
             // If the image is not selected, add it
-            setSelectedClothes([...selectedClothes, 
+            setSelectedClothes([...selectedClothes,
                 { src: imagePath, 
                   x: 10, 
                   y: 10, 
-                  id: imagePath }
+                id: imagePath
+            }
             ]);
         }
     }
-    
-    
+
+
 
     const clothesArray = props.data.map(obj => (
         <div className="clothing-item" key={obj.timestamp}>
-            <img src={obj.img} alt={obj.alt} onClick={clickHandler} key={obj.timestamp}/>
+            <img src={obj.img} alt={obj.alt} onClick={clickHandler} key={obj.timestamp} />
         </div>
     ));
 
