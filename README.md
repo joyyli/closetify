@@ -14,14 +14,14 @@ Closetify is a web app that helps users have a better understanding of what's in
 ### Personal closet
 Users can upload images of their clothes into Closetify, populating a personal closet. Clothes can be tagged by occasion and weather, allowing filtering to find specific styles.
 
-![Closetify closet on a phone](/public/img/mobilecloset.png)
+<img src="/public/img/mobilecloset.png" alt="Closetify closet on a phone" width="200"/>
 
 ### Outfit maker
 Built with Konva and React, users can drag, drop, transform, and rotate their closet items on a canvas to plan their daily outfits, which are then saved to their home feed. Outfits are saved to Firebase's realtime databse.
 
-![Closetify outfit maker on a Macbook](/public/img/macbook.png)
+<img src="/public/img/macbook.png" alt="Closetify outfit maker on a Macbook" width="450"/>
 
-![Closetify home on a phone](/public/img/mobilehome.png)
+<img src="/public/img/mobilehome.png" alt="Closetify homepage on a phone" width="200"/>
 
 ### User Authentication
 Firebase user authentication supports secure Google login methods.
